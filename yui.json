@@ -1,0 +1,13 @@
+{
+    "name": "Next UI Toolkit",
+    "description": "Next UI Toolkit API docs",
+    "version": "0.8",
+    "url": "index.html",
+    "options": {
+        "linkNatives": "true",
+        "attributesEmit": "false",
+        "selleck": "false",
+        "paths": ["./dest/js"],
+        "outdir": "./dest/doc"
+    }
+}

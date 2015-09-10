@@ -1,0 +1,51 @@
+
+.itemsList {
+    height: 100%;
+    overflow: auto;
+}
+.row {
+    position: relative;
+    height: 100%;
+}
+.prev {} .prev {
+             height: 100%;
+         }
+.demoContainer,
+.codeContainer {
+    height: 100%;
+}
+.codeContainer > pre,
+.demoContainer > div {
+    min-height: 100%;
+}
+.codeContainer {
+    display: none;
+}
+.iconlist li {
+    list-style: none;
+    border-radius: 4px;
+    border: solid 1px #ccc;
+    padding: 10px;
+    display: inline-block;
+    margin: 10px;
+    width: 190px;
+    height: 140px;
+    float: left;
+}
+.iconlist li label {
+    width: 170px;
+    font-size: 18px;
+    color: #333;
+    border-bottom: dotted 1px #ccc;
+}
+.iconlist li p {
+    text-align: center;
+}
+.iconlist li svg {
+    margin-top: 12px;
+    display: inline-block;
+}
+.demoContainer {
+    border: solid 1px #DDD;
+    border-top-width: 0px;
+}

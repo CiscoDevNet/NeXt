@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Example</title>
+    <script type="text/javascript" src="http://10.75.161.96:8080/jenkins/job/nextui/ws/lib/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="http://10.75.161.96:8080/jenkins/job/DailyBuild/lastSuccessfulBuild/artifact/dest/next-core.js"></script>
+    <script type="text/javascript" src="http://10.75.161.96:8080/jenkins/job/nextui/lastSuccessfulBuild/artifact/dest/js/next-ui.js"></script>
+    <script type="text/javascript" src="http://10.75.161.96:8080/jenkins/job/Next-graphic/lastSuccessfulBuild/artifact/dest/js/next-graphic.js"></script>
+    <link rel="stylesheet" href="http://10.75.161.96:8080/jenkins/job/nextui/lastSuccessfulBuild/artifact/dest/css/next-blue.css"/>
+    <link rel="stylesheet" href="../../../src/less/next-graphic.css"/>
+</head>
+<style>
+    html, body {
+        padding: 0px;
+        height: 100%;
+        width: 100%;
+    }
+</style>
+<body>
+<script type="text/javascript">
+
+
+    var topo = new nx.graphic.Topology({
+        adaptive: true,
+        identityKey: 'id',
+        dataProcessor: 'force',
+        nodeConfig: {
+            label: 'model.label'
+        },
+        enableSmartLabel: false,
+        enableGradualScaling: false,
+        supportMultipleLink: false,
+        showIcon: false
+    });
+
+
+    var App = nx.define(nx.ui.Application, {
+        methods: {
+            start: function () {
+                topo.attach(app);
+                $.getJSON('lab-topo.json', function (data) {
+                    var start = new Date();
+                    console.log('Start rendering...');
+                    topo.data(data.response);
+                    topo.fit();
+                    console.log('End render,cost :' + (new Date() - start) + 'ms');
+                });
+            }
+        }
+    });
+
+    var app = new App();
+    app.start();
+
+</script>
+
+
+</body>
+</html>

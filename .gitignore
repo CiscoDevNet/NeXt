@@ -4,3 +4,6 @@ target/
 # OpenDaylight
 yang-gen-sal/
 yang-gen-config/
+
+.idea/
+node_modules/
