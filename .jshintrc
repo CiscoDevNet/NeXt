@@ -1,0 +1,10 @@
+{
+    // Settings
+    "passfail"      : false,  // Stop on first error.
+    "maxerr"        : 100,    // Maximum error before stopping.
+
+
+    "loopfunc"      : true,  // Allow functions to be defined within loops.
+    "expr"          : true
+
+}

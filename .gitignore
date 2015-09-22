@@ -6,4 +6,6 @@ yang-gen-sal/
 yang-gen-config/
 
 .idea/
+etc/
+node/
 node_modules/

@@ -2,27 +2,27 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('files.json'),
-        copyright: "/*" + grunt.file.read('copyright.txt') + "*/",
-        license: "/*" + grunt.file.read('LICENSE.txt') + "*/",
+        copyright: "/*" + grunt.file.read('COPYRIGHT') + "*/",
+        license: "/*" + grunt.file.read('LICENSE') + "*/",
         clean: {
             all: {
-                src: ['dest', 'devsite/next', 'devsite/example']
+                src: ['target/dest', 'target/site/next', 'target/site/example']
             }
         },
         less: {
             topo: {
                 files: {
-                    "dest/css/next.css": "src/less/next-graphic.less",
-                    "dest/css/next-componentized.css": "src/less/next-graphic-componentized.less"
+                    "target/dest/css/next.css": "src/main/resources/less/next-graphic.less",
+                    "target/dest/css/next-componentized.css": "src/main/resources/less/next-graphic-componentized.less"
                 }
             }
         },
         cssmin: {
             topo: {
                 expand: true,
-                cwd: 'dest/css',
+                cwd: 'target/dest/css',
                 src: ['next.css', 'next-componentized.css'],
-                dest: 'dest/css',
+                dest: 'target/dest/css',
                 ext: '.min.css'
             }
         },
@@ -35,18 +35,18 @@ module.exports = function(grunt) {
             }
         },
         qunit: {
-            all: ['test/core/index.html', 'test/ui/test.html']
+            all: ['src/test/core/index.html', 'src/test/ui/test.html']
         },
         concat: {
             base: {
                 src: '<%= pkg.scripts %>',
-                dest: 'dest/js/next.js'
+                dest: 'target/dest/js/next.js'
             }
         },
         uglify: {
             base: {
-                src: ['dest/js/next.js'],
-                dest: 'dest/js/next.min.js',
+                src: ['target/dest/js/next.js'],
+                dest: 'target/dest/js/next.min.js',
                 options: {
                     beautify: {
                         ascii_only: true
@@ -64,8 +64,8 @@ module.exports = function(grunt) {
                     "linkNatives": "true",
                     "attributesEmit": "false",
                     "selleck": "false",
-                    paths: ['dest/js'],
-                    outdir: 'dest/doc'
+                    paths: ['target/dest/js'],
+                    outdir: 'target/dest/doc'
                 }
             }
         },
@@ -78,42 +78,42 @@ module.exports = function(grunt) {
             fonts: {
                 files: [{
                     expand: true,
-                    cwd: 'src',
+                    cwd: 'src/main/resources',
                     src: ['fonts/**'],
-                    dest: 'dest'
+                    dest: 'target/dest'
                 }]
             },
             example: {
                 files: [{
                     expand: true,
-                    src: ['example/topology/**'],
-                    dest: 'devsite'
+                    src: ['src/example/topology/**'],
+                    dest: 'target/site'
                 }]
             },
             next: {
                 files: [{
                     expand: true,
-                    src: ['dest/**'],
-                    dest: 'devsite/next'
+                    src: ['target/dest/**'],
+                    dest: 'target/site/next'
                 }, {
                     expand: true,
-                    cwd: 'dest/',
+                    cwd: 'target/dest/',
                     src: ['**'],
-                    dest: 'tutorials/libs/next'
+                    dest: 'target/tutorials/libs/next'
                 }]
             },
             LICENSE: {
                 files: [{
                     expand: true,
                     src: ['LICENSE.txt'],
-                    dest: 'dest'
+                    dest: 'target/dest'
                 }]
             },
             LICENSE2: {
                 files: [{
                     expand: true,
                     src: ['LICENSE.txt'],
-                    dest: 'devsite'
+                    dest: 'target/site'
                 }]
             }
         },
@@ -123,20 +123,20 @@ module.exports = function(grunt) {
                     text: '<%= copyright %>\r\n<%= license %>'
                 },
                 files: {
-                    'dest/js/next.js': 'dest/js/next.js',
-                    'dest/js/next.min.js': 'dest/js/next.min.js',
-                    'dest/css/next.css': 'dest/css/next.css',
-                    'dest/css/next.min.css': 'dest/css/next.min.css'
+                    'target/dest/js/next.js': 'target/dest/js/next.js',
+                    'target/dest/js/next.min.js': 'target/dest/js/next.min.js',
+                    'target/dest/css/next.css': 'target/dest/css/next.css',
+                    'target/dest/css/next.min.css': 'target/dest/css/next.min.css'
                 }
             }
         },
         compress: {
             main: {
                 options: {
-                    archive: 'devsite/NeXt.zip'
+                    archive: 'target/site/NeXt.zip'
                 },
                 files: [{
-                    src: ['dest/**']
+                    src: ['target/dest/**']
                 }]
             }
         }
