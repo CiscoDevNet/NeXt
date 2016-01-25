@@ -9,3 +9,5 @@ yang-gen-config/
 etc/
 node/
 node_modules/
+
+.DS_Store

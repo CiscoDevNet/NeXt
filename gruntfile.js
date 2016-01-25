@@ -6,23 +6,23 @@ module.exports = function(grunt) {
         license: "/*" + grunt.file.read('LICENSE') + "*/",
         clean: {
             all: {
-                src: ['target/dest', 'target/site/next', 'target/site/example']
+                src: ['dest']
             }
         },
         less: {
             topo: {
                 files: {
-                    "target/dest/css/next.css": "src/main/resources/less/next-graphic.less",
-                    "target/dest/css/next-componentized.css": "src/main/resources/less/next-graphic-componentized.less"
+                    "dest/css/next.css": "src/main/resources/less/next-graphic.less",
+                    "dest/css/next-componentized.css": "src/main/resources/less/next-graphic-componentized.less"
                 }
             }
         },
         cssmin: {
             topo: {
                 expand: true,
-                cwd: 'target/dest/css',
+                cwd: 'dest/css',
                 src: ['next.css', 'next-componentized.css'],
-                dest: 'target/dest/css',
+                dest: 'dest/css',
                 ext: '.min.css'
             }
         },
@@ -40,13 +40,13 @@ module.exports = function(grunt) {
         concat: {
             base: {
                 src: '<%= pkg.scripts %>',
-                dest: 'target/dest/js/next.js'
+                dest: 'dest/js/next.js'
             }
         },
         uglify: {
             base: {
-                src: ['target/dest/js/next.js'],
-                dest: 'target/dest/js/next.min.js',
+                src: ['dest/js/next.js'],
+                dest: 'dest/js/next.min.js',
                 options: {
                     beautify: {
                         ascii_only: true
@@ -64,8 +64,8 @@ module.exports = function(grunt) {
                     "linkNatives": "true",
                     "attributesEmit": "false",
                     "selleck": "false",
-                    paths: ['target/dest/js'],
-                    outdir: 'target/dest/doc'
+                    paths: ['dest/js'],
+                    outdir: 'dest/doc'
                 }
             }
         },
@@ -80,42 +80,42 @@ module.exports = function(grunt) {
                     expand: true,
                     cwd: 'src/main/resources',
                     src: ['fonts/**'],
-                    dest: 'target/dest'
+                    dest: 'dest'
                 }]
             },
-            example: {
-                files: [{
-                    expand: true,
-                    src: ['src/example/topology/**'],
-                    dest: 'target/site'
-                }]
-            },
-            next: {
-                files: [{
-                    expand: true,
-                    src: ['target/dest/**'],
-                    dest: 'target/site/next'
-                }, {
-                    expand: true,
-                    cwd: 'target/dest/',
-                    src: ['**'],
-                    dest: 'target/tutorials/libs/next'
-                }]
-            },
+            //example: {
+            //    files: [{
+            //        expand: true,
+            //        src: ['src/example/topology/**'],
+            //        dest: 'target/site'
+            //    }]
+            //},
+            //next: {
+            //    files: [{
+            //        expand: true,
+            //        src: ['dest/**'],
+            //        dest: 'target/site/next'
+            //    }, {
+            //        expand: true,
+            //        cwd: 'dest/',
+            //        src: ['**'],
+            //        dest: 'target/tutorials/libs/next'
+            //    }]
+            //},
             LICENSE: {
                 files: [{
                     expand: true,
                     src: ['LICENSE.txt'],
-                    dest: 'target/dest'
-                }]
-            },
-            LICENSE2: {
-                files: [{
-                    expand: true,
-                    src: ['LICENSE.txt'],
-                    dest: 'target/site'
+                    dest: 'dest'
                 }]
             }
+            //LICENSE2: {
+            //    files: [{
+            //        expand: true,
+            //        src: ['LICENSE.txt'],
+            //        dest: 'target/site'
+            //    }]
+            //}
         },
         header: {
             dist: {
@@ -123,20 +123,20 @@ module.exports = function(grunt) {
                     text: '<%= copyright %>\r\n<%= license %>'
                 },
                 files: {
-                    'target/dest/js/next.js': 'target/dest/js/next.js',
-                    'target/dest/js/next.min.js': 'target/dest/js/next.min.js',
-                    'target/dest/css/next.css': 'target/dest/css/next.css',
-                    'target/dest/css/next.min.css': 'target/dest/css/next.min.css'
+                    'dest/js/next.js': 'dest/js/next.js',
+                    'dest/js/next.min.js': 'dest/js/next.min.js',
+                    'dest/css/next.css': 'dest/css/next.css',
+                    'dest/css/next.min.css': 'dest/css/next.min.css'
                 }
             }
         },
         compress: {
             main: {
                 options: {
-                    archive: 'target/site/NeXt.zip'
+                    archive: 'dest/NeXt.zip'
                 },
                 files: [{
-                    src: ['target/dest/**']
+                    src: ['dest/**']
                 }]
             }
         }
@@ -146,7 +146,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-header');
     grunt.loadNpmTasks('grunt-exec');
 
-    grunt.registerTask('default', ['clean', 'less', 'cssmin', 'jshint', 'qunit', 'concat', 'yuidoc', 'uglify', 'copy', 'header', 'compress']);
+    //grunt.registerTask('default', ['clean', 'less', 'cssmin', 'jshint', 'qunit', 'concat', 'yuidoc', 'uglify', 'copy', 'header', 'compress']);
+
+    grunt.registerTask('default', ['clean', 'less', 'cssmin', 'jshint','concat', 'yuidoc', 'uglify', 'copy', 'header', 'compress']);
 
     grunt.registerTask('test', ['clean', 'less', 'cssmin', 'jshint', 'concat', 'exec', 'uglify', 'copy', 'compress']);
 
