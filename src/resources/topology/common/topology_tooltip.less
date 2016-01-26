@@ -1,0 +1,58 @@
+@tooltipArrowsize: 8px;
+@tootipWidth: 200px;
+.n-topology-tooltip {
+  padding: 0px;
+  opacity: 0.8 !important;
+  max-height: 450px;
+  &-header {
+    min-width: 160px;
+    line-height: 24px;
+    position: relative;
+    border-bottom: dotted 1px #ccc;
+
+    &-actions {
+      float: right;
+
+      i {
+        cursor: pointer;
+      }
+
+    }
+    &-text {
+      line-height: 24px;
+      color: #333;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+  }
+  &-content {
+    margin-bottom: 6px;
+    padding: 3px;
+    min-height: 30px;
+
+    label {
+      display: inline-block;
+      margin-right: 8px;
+      font-weight: bold;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0px;
+    }
+    li {
+      list-style: none;
+    }
+
+  }
+
+  &:after {
+    display: none;
+  }
+
+  .popover-content {
+    padding: 5px 10px;
+  }
+
+}

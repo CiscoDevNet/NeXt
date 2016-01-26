@@ -1,0 +1,453 @@
+.n-topology(@primaryColor,@secondaryColor,@topologyBackgroundColor,@secondBackgroundColor,@nodeSelectedBGColor,@mapFillColor,@mapStrokeColor) {
+  position: relative;
+  overflow: hidden;
+  background: @topologyBackgroundColor;
+  -webkit-transition: background 0.6s; /* For Safari 3.1 to 6.0 */
+  transition: background 0.6s;
+  .user-select(none);
+
+  &:focus {
+    outline: 0 none;
+  }
+
+  .n-topology-fit {
+    -webkit-transition: all 0.6s linear !important; /* For Safari 3.1 to 6.0 */
+    transition: all 0.6s linear !important;
+  }
+  .n-topology-fit .node,
+  .n-topology-fit .nodeSet,
+  .n-topology-fit .link,
+  .n-topology-fit .linkSet {
+    -webkit-transition: all 0.9s linear !important; /* For Safari 3.1 to 6.0 */
+    transition: all 0.9s linear !important;
+  }
+
+  &.n-topology-loading {
+    svg, .n-topology-nav {
+      -webkit-filter: blur(5px);
+      -moz-filter: blur(5px)
+    }
+  }
+
+  svg {
+    box-sizing: content-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    //    background: #c09853;
+  }
+
+  text:empty {
+    display: none;
+  }
+
+  g {
+    pointer-events: all;
+  }
+
+  defs .bg {
+    fill: @primaryColor;
+  }
+
+  defs .stroke {
+    stroke: @primaryColor;
+  }
+
+  defs [fill*='#FFFFFF'] {
+    fill: @topologyBackgroundColor;
+  }
+
+  .n-svg {
+    border: none;
+    .user-select(none);
+  }
+
+  .fontIcon {
+    font-family: 'next-font';
+    fill: @primaryColor;
+    alignment-baseline: central;
+    text-anchor: middle;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  text {
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .n-topology-icon .fontIcon {
+    cursor: pointer;
+  }
+
+  .iconBG {
+    fill: @topologyBackgroundColor;
+  }
+
+  .iconBGActive {
+    fill: @primaryColor;
+  }
+
+  .node {
+    &:not(.node-selected) .selectedBG {
+	display: none;
+    }
+    .selectedBG {
+      fill: transparent;
+      opacity: 0.8;
+      stroke: @nodeSelectedBGColor;
+      stroke-width: 3;
+      pointer-events: none;
+    }
+
+    .dot {
+      fill: @primaryColor;
+    }
+    text.node-label {
+      font-family: "Cisco Sans Reg";
+      fill: @primaryColor;
+      pointer-events: none;
+      .user-select(none);
+      font-size: 11px;
+    }
+
+    &.disable {
+      .node-label {
+        fill: #ccc !important;
+      }
+
+      .showIcon {
+        .iconShape {
+          fill: #ccc;
+        }
+      }
+      .iconBG.iconBGActive {
+        fill: #ccc;
+      }
+
+    }
+
+  }
+
+  .link {
+
+    path, line {
+      stroke: @secondaryColor;
+      stroke-width: 1px;
+      fill: none;
+      cursor: pointer;
+    }
+
+    path.link:hover, line.link:hover {
+      stroke: darken(@secondaryColor, 15.5%)
+    }
+
+    line.link_bg:hover ~ line{
+      stroke: darken(@secondaryColor, 15.5%) !important
+    }
+
+    .link-label {
+      font-family: "Cisco Sans Reg";
+      fill: @primaryColor;
+      font-size: 12px;
+    }
+    .source-abel {
+      font-family: "Cisco Sans Reg";
+      fill: @primaryColor;
+      opacity: 0.8;
+      font-size: 12px;
+    }
+    .target-label {
+      font-family: "Cisco Sans Reg";
+      fill: @primaryColor;
+      opacity: 0.8;
+      font-size: 12px;
+    }
+
+    .disable-label {
+      fill: #fff;
+    }
+
+    .disable-bg {
+      fill: #ccc;
+    }
+
+    .link_bg{
+      stroke: transparent;
+    }
+
+    &.disable {
+      path, line {
+        stroke: #ccc !important;
+        stroke-width: 1px;
+      }
+      .link_bg{
+        stroke: transparent !important;
+      }
+
+    }
+
+    &.link-selected {
+      path, line {
+        stroke: #ccc;
+        stroke-width: 2px;
+      }
+    }
+
+  }
+
+  .nodeset {
+
+    .selectedBG {
+      fill: transparent;
+      opacity: 0.8;
+      stroke: @nodeSelectedBGColor;
+      stroke-width: 3;
+      pointer-events: none;
+    }
+
+    .dot {
+      fill: @topologyBackgroundColor;
+      stroke: @primaryColor;
+      stroke-width: 1;
+    }
+
+    .icon {
+      cursor: pointer;
+    }
+
+    .bg {
+      fill: @primaryColor;
+      pointer-events: none;
+    }
+
+    text.node-label {
+      font-family: "Cisco Sans Reg";
+      fill: @primaryColor;
+      .user-select(none);
+      pointer-events: none;
+    }
+
+    &.disable {
+      opacity: 0.3;
+      stroke: #ccc;
+    }
+
+    .iconBG {
+      fill: @topologyBackgroundColor;
+    }
+    .iconBGActive {
+      fill: @topologyBackgroundColor;
+    }
+
+    .iconBGActive ~ .iconShape {
+      display: block !important;
+    }
+
+    .indicator .iconBG {
+      fill: @topologyBackgroundColor;
+
+    }
+
+    .indicator .iconBG:hover {
+      fill: @primaryColor;
+    }
+
+    .indicator .iconShape {
+      fill: darken(@primaryColor, 10%);
+    }
+
+  }
+
+  .group {
+
+    .bg {
+      opacity: 0.6;
+      stroke-width: 10px;
+      stroke-linejoin: round;
+    }
+
+    .groupLabel {
+      cursor: pointer;
+      font-size: 18px;
+      font-family: "Cisco Sans Reg";
+
+      text-anchor: middle;
+      alignment-baseline: inherit;
+    }
+
+    .fontIcon.iconShape {
+      fill: #9BB150;
+    }
+
+    .nodeSetGroupLabel {
+      cursor: pointer;
+      font-size: 18px;
+      font-family: "Cisco Sans Reg";
+      alignment-baseline: inherit;
+      fill: #9BB150;
+    }
+
+    .groupLabel:hover ~ .bg {
+      opacity: 0.7;
+    }
+
+    &.aggregationGroup {
+      //      opacity: 0.6;
+      .bg {
+        stroke-width: 10px;
+        stroke-linejoin: round;
+        fill: #9BB150;
+        stroke: #9BB150;
+        pointer-events: none;
+        opacity: 0;
+        -webkit-transition: opacity 0.3s linear; /* For Safari 3.1 to 6.0 */
+        transition: opacity 0.3s linear;
+      }
+
+      &.fade-active-item {
+        opacity: 1;
+        .bg {
+          opacity: 0.5;
+        }
+        .iconShape {
+          //          fill: @primaryColor !important;
+        }
+        .nodeSetGroupLabel {
+          //          fill: @primaryColor !important;
+        }
+
+      }
+    }
+
+  }
+
+  .link-set {
+
+    &-bg {
+      stroke: @secondaryColor;
+      stroke-width: 2px;
+    }
+    &-circle {
+      fill: @primaryColor;
+      stroke: @primaryColor;
+      stroke-width: 16px;
+      stroke-linejoin: round;
+    }
+    &-text {
+      font-family: "Cisco Sans Reg";
+      fill: @topologyBackgroundColor;
+      text-anchor: middle;
+      dominant-baseline: central;
+      font-size: 12px;
+      pointer-events: none;
+
+    }
+
+    &.disable {
+	.link-set-bg {
+	    stroke: #ccc;
+	}
+	.link-set-circle {
+	    fill: #ccc;
+	    stroke: #ccc;
+	}
+    }
+
+
+  }
+
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    /* Safari only override */
+    ::i-block-chrome, .link-set-circle {
+      stroke-width: 8px !important;
+    }
+  }
+
+  .mapPath {
+    fill: @mapFillColor;
+    stroke: @mapStrokeColor;
+    stroke-width: 1;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .mapBoundary {
+    fill: none;
+    stroke: @mapStrokeColor;
+//    stroke: lighten(@primaryColor, 48%);
+    stroke-width: 1;
+    pointer-events: none;
+  }
+
+  .selectionRect {
+    stroke: @primaryColor;
+    fill: @primaryColor;
+    fill-opacity: 0.1;
+    pointer-events: none;
+  }
+
+  &-setting {
+    max-width: none !important;
+  }
+
+  .aggregationGroup {
+
+    .aggregationText {
+      fill: @primaryColor;
+      font-size: 12px;
+    }
+
+    .aggregationRect {
+      fill: @primaryColor;
+      opacity: 0.2;
+      stroke: @primaryColor;
+      stroke-width: 3;
+      stroke-linejoin: round;
+      pointer-events: none;
+    }
+
+  }
+
+  .layer {
+    > * {
+      transition: opacity .6s;
+    }
+  }
+
+  .layer {
+    &.fade-layer > *:not(.fade-highlight-item):not(.fade-active-item) {
+      opacity: .2;
+    }
+  }
+
+  &.fade-active-priority.fade-active-occur .layer {
+    &.fade-layer > .fade-highlight-item:not(.fade-active-item) {
+      opacity: .2;
+    }
+  }
+
+  &.fade-all .layer {
+    > *:not(.fade-highlight-item):not(.fade-active-item) {
+      opacity: .2;
+    }
+  }
+
+  &.fade-active-priority.fade-active-occur.fade-all .layer {
+    > .fade-highlight-item:not(.fade-active-item) {
+      opacity: .2;
+    }
+  }
+
+}

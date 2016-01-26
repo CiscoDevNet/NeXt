@@ -14,7 +14,7 @@
 
   <groupId>org.opendaylight.next</groupId>
   <artifactId>next</artifactId>
-  <version>0.8</version>
+  <version>0.9</version>
   
   <build>
     <plugins>

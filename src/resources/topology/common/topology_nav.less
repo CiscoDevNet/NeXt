@@ -1,0 +1,264 @@
+.n-topology-nav(@toolBarModeBg,@toolbarBorder,@toolbarColor,@zoomBarHover,@zoomBarHoverBG:#ccc,@iconHoverBG:#ccc,@brand-primary,@body-bg) {
+  .n-topology-nav {
+    position: absolute;
+    top: 0px;
+    left: 8px;
+    .user-select(none);
+
+    li {
+      list-style: none;
+      padding: 0px;
+    }
+
+    ul {
+      padding: 0px;
+      margin: 0px;
+    }
+
+    span {
+      -webkit-transition: all 0.6s; /* For Safari 3.1 to 6.0 */
+      transition: all 0.6s;
+    }
+
+    & > ul {
+      padding: 0px;
+      margin-top: 30px;
+      width: 32px;
+    }
+
+    & > ul > li {
+      display: inline-block;
+      list-style: none;
+      width: 25px;
+      margin-top: 5px;
+      -webkit-transition: all 0.6s; /* For Safari 3.1 to 6.0 */
+      transition: all 0.6s;
+    }
+
+    &-mode {
+      padding: 0px;
+      position: relative;
+      width: 25px;
+      li {
+        width: 25px;
+        height: 25px;
+        line-height: 30px;
+        display: inline-block;
+        text-align: center;
+        cursor: pointer;
+        -webkit-transition: all 0.6s; /* For Safari 3.1 to 6.0 */
+        transition: all 0.6s;
+        background: @toolBarModeBg;
+        margin-top: -2px;
+        &:hover {
+          span {
+            color: @brand-primary;
+          }
+        }
+      }
+      span {
+        color: @toolbarColor;
+        display: inline-block;
+        font-size: 18px;
+      }
+      &-selected {
+        background: @brand-primary !important;
+        span {
+          color: @body-bg;
+        }
+        &:hover {
+          background: @brand-primary !important;
+          span {
+            color: @body-bg !important;
+          }
+        }
+      }
+    }
+
+    &-zoom {
+      position: relative;
+      height: 51px;
+      margin-top: 10px !important;
+      & > span {
+        display: inline-block;
+        position: absolute;
+        text-align: center;
+        font-size: 25px;
+        color: @toolbarColor;
+        background:@toolBarModeBg ;
+      }
+
+      &-in {
+        top: 0px;
+        left: 0px;
+        cursor: pointer;
+        &:hover {
+          color: @zoomBarHoverBG;
+          background: @zoomBarHover;
+        }
+      }
+
+      &-out {
+        top: 25px;
+        left: 0px;
+        cursor: pointer;
+        &:hover {
+          color: @zoomBarHoverBG;
+          background: @zoomBarHover;
+        }
+      }
+    }
+
+    &-zoom-selection {
+      cursor: pointer;
+      text-align: center;
+      font-size: 22px;
+      color: @toolbarColor;
+      &:hover {
+        color: @iconHoverBG;
+      }
+
+      &-selected {
+        color: lighten(@brand-primary, 20%);
+      }
+
+    }
+
+    &-fit {
+      cursor: pointer;
+      text-align: center;
+      font-size: 22px;
+      color: @toolbarColor;
+      &:hover {
+        color: @iconHoverBG;
+      }
+    }
+
+    &-agr {
+      cursor: pointer;
+      line-height: 24px;
+      text-align: center;
+      font-size: 20px;
+      height: 24px;
+      color: @toolbarColor;
+      display: none;
+      &:hover {
+        color: @iconHoverBG;
+      }
+
+      //      border:solid 2px @toolbarColor;
+      //      border-radius: 16px;
+    }
+
+    @-webkit-keyframes agr-icon-ani {
+      0% {
+        -webkit-transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    .agr-icon {
+      -webkit-animation-duration: 3s;
+      -webkit-animation-name: agr-icon-ani;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-direction: normal;
+      -webkit-animation-timing-function: linear;
+      -webkit-transition: 0 none;
+      color: lighten(@brand-primary, 5%);
+    }
+
+    .agr-text {
+      font-size: 10px;
+      color: @toolBarModeBg; //;lighten(@brand-primary, 5%);
+      position: absolute;
+      left: 10px;
+      margin-top: -1px;
+      height: 12px;
+
+    }
+
+    &-full {
+      cursor: pointer;
+      text-align: center;
+      font-size: 18px;
+      color: @toolbarColor;
+      &:hover {
+        color: @iconHoverBG;
+      }
+    }
+
+    &-setting {
+      cursor: pointer;
+      text-align: center;
+      color: @toolbarColor;
+      line-height: 1;
+      -webkit-transition: none 0 !important; /* For Safari 3.1 to 6.0 */
+      transition: none 0 !important;
+      &:hover {
+        opacity: 1;
+        color: lighten(@brand-primary, 5%);
+      }
+      &-icon {
+        font-size: 20px;
+      }
+      &-icon-selected {
+        color: lighten(@brand-primary, 5%);
+      }
+
+    }
+  }
+}
+
+.n-topology-setting-panel {
+
+  max-width: 342px !important;
+  font-family: Arial;
+
+  .popover-content {
+
+    width: 330px;
+    line-height: 24px;
+    height: auto;
+    h3 {
+      margin: 4px 0px 6px 0px;
+    }
+
+    h5 {
+      margin: 5px 0;
+    }
+
+    label {
+      font-size: 12px;
+      margin-right: 12px;
+    }
+
+    .btn-group button {
+      margin: 0;
+      margin-right: -1px;
+    }
+    .n-radio {
+      margin-right: 12px;
+      font-weight: normal;
+
+      span {
+        margin-left: 3px;
+      }
+    }
+
+    &-content {
+    }
+
+    &-label {
+      display: inline-block;
+      margin-right: 20px;
+    }
+
+    .toggleLabelCheckBox {
+      float: right;
+      margin-right: 12px;
+    }
+
+  }
+}

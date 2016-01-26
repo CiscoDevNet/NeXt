@@ -1,0 +1,13 @@
+{
+    "name": "Next graph",
+    "description": "Next graph API docs",
+    "version": "0.1",
+    "url":"index.html",
+    "options": {
+        "linkNatives": "true",
+        "attributesEmit": "true",
+        "selleck": "true",
+        "paths": "*/js",
+        "outdir": "../dest/docs"
+    }
+}
