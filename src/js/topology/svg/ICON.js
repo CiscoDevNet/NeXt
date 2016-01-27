@@ -88,7 +88,7 @@
                     }
 
 
-                    this.view().set('iconType', value);
+                    this.view().set('icontype', value);
                     this.view().dom().addClass('n-topology-icon');
 
 

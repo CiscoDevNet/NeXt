@@ -7,7 +7,7 @@ yang-gen-config/
 
 .idea/
 etc/
-node/
 node_modules/
 
 .DS_Store
+sandbox/

@@ -1,4 +1,4 @@
-(function (nx, global) {
+(function(nx, global) {
     var xlink = "http://www.w3.org/1999/xlink";
     /**
      * Topology device icons collection
@@ -22,7 +22,7 @@
              * @returns {element}
              * @method get
              */
-            get: function (type) {
+            get: function(type) {
                 return ICONS.icons[type] || ICONS.icons.switch;
             },
             /**
@@ -31,7 +31,7 @@
              * @returns {element}
              * @method getSVGString
              */
-            getSVGString: function (type) {
+            getSVGString: function(type) {
                 return topology_icon[type].icon;
             },
             /**
@@ -39,7 +39,7 @@
              * @returns {Array}
              * @method getTypeList
              */
-            getTypeList: function () {
+            getTypeList: function() {
                 return Object.keys(topology_icon);
             },
             /**
@@ -50,7 +50,7 @@
              * @param width {Number} icon"s width
              * @param height {Number} icon"s height
              */
-            registerIcon: function (name, url, width, height) {
+            registerIcon: function(name, url, width, height) {
                 var icon1 = document.createElementNS(NS, "image");
                 icon1.setAttributeNS(XLINK, "href", url);
                 ICONS.icons[name] = {
@@ -63,15 +63,37 @@
                 };
             },
             /**
+             * Register a fontIcon to this collection
+             * @method registerFontIcon
+             * @param name {String} icon's name
+             * @param fontfamily {String} icon's font family
+             * @param fontCharacter {String} font icon's character, start with \u, like \uf108
+             * @param fontSize
+             */
+            registerFontIcon: function(name, fontfamily, fontCharacter, fontSize) {
+                ICONS.icons[name] = {
+                    size: {
+                        width: fontSize,
+                        height: fontSize
+                    },
+                    name: name
+                };
+
+                ICONS.icons[name].font = [fontCharacter, fontCharacter];
+
+                nx.dom.Document.addRule(".n-topology g[iconType=" + name + "] .fontIcon", "font-family: " + fontfamily + " !important;");
+
+
+            },
+            /**
              * Iterate all icons
              * @param inCallback {Function}
              * @param [inContext] {Object}
              * @private
              */
-            __each__: function (inCallback, inContext) {
-                var callback = inCallback || function () {
-                };
-                nx.each(topology_icon, function (obj, name) {
+            __each__: function(inCallback, inContext) {
+                var callback = inCallback || function() {};
+                nx.each(topology_icon, function(obj, name) {
                     var icon = obj.icon;
                     callback.call(inContext || this, icon, name, topology_icon);
                 });
@@ -177,22 +199,22 @@
             height: 48,
             font: ["\ue633", "\ue633"]
         },
-        unlinked:{
+        unlinked: {
             width: 32,
             height: 32,
             font: ["\ue646", "\ue61d"]
         },
-        firewall:{
+        firewall: {
             width: 32,
             height: 32,
             font: ["\ue647", "\ue648"]
         },
-        hostgroup:{
+        hostgroup: {
             width: 32,
             height: 32,
             font: ["\ue64d", "\ue64c"]
         },
-        wirelesshost:{
+        wirelesshost: {
             width: 32,
             height: 32,
             font: ["\ue64e", "\ue64c"]
@@ -200,9 +222,12 @@
     };
 
 
-    nx.each(topology_icon, function (icon, key) {
+    nx.each(topology_icon, function(icon, key) {
         var i = ICONS.icons[key] = {
-            size: {width: icon.width, height: icon.height},
+            size: {
+                width: icon.width,
+                height: icon.height
+            },
             name: key
         };
 
