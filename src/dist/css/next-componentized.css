@@ -5,6 +5,20 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: "Cisco Sans Extra Light";
+  src: url('../fonts/cisco/ciscosansextralight-webfont.eot');
+  src: url('../fonts/cisco/ciscosansextralight-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/cisco/ciscosansextralight-webfont.woff') format('woff'), url('../fonts/cisco/ciscosansextralight-webfont.ttf') format('truetype'), url('../fonts/cisco/ciscosansextralight-webfont.svg#CiscoSansExtraLight') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Cisco Sans Reg";
+  src: url('../fonts/cisco/ciscosansregular-webfont.eot');
+  src: url('../fonts/cisco/ciscosansregular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/cisco/ciscosansregular-webfont.woff') format('woff'), url('../fonts/cisco/ciscosansregular-webfont.ttf') format('truetype'), url('../fonts/cisco/ciscosansregular-webfont.svg#CiscoSansReg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 .next [class^="n-icon-"],
 .next [class*=" n-icon-"] {
   font-family: 'next-font';
