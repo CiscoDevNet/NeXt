@@ -147,15 +147,15 @@ resource:
 
 	@mkdir -p target/css
 
-	@lessc src/resources/topology/next-topology.less  target/css/next.css
+	@lessc src/style/topology/next-topology.less  target/css/next.css
 
-	@lessc src/resources/topology/next-topology-componentized.less target/css/next-componentized.css
+	@lessc src/style/topology/next-topology-componentized.less target/css/next-componentized.css
 
 	@printf "Fonts..."
 
 	@mkdir -p target/fonts
 
-	@cp -R src/resources/fonts/* target/fonts
+	@cp -R src/style/fonts/* target/fonts
 
 	@echo "Done."
 
