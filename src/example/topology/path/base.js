@@ -55,7 +55,7 @@
 
                 var path1 = new nx.graphic.Topology.Path({
                     links: links1,
-                    arrow: 'cap'
+                    arrow: 'end'
                 });
 
                 pathLayer.addPath(path1);

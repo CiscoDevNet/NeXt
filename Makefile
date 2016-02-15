@@ -124,6 +124,7 @@ FILES_SRC = \
 	src/js/topology/topology/group/NodeSetPolygonGroup.js \
 	src/js/topology/topology/path/Path.js \
 	src/js/topology/topology/path/BasePath.js \
+	src/js/topology/topology/path/NodeSetPath.js \
 	src/js/topology/topology/path/PathLayer.js \
 	src/js/topology/topology/plugin/Nav.js \
 	src/js/topology/topology/plugin/Thumbnail.js \

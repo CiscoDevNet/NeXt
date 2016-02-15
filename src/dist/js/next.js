@@ -16442,7 +16442,7 @@ var nx = {
     });
 
 })(nx, nx.global);
-(function (nx, global) {
+(function(nx, global) {
 
     var util = nx.util;
 
@@ -16457,7 +16457,7 @@ var nx = {
         properties: {
             /**
              * Node instance class name, support function
-            * @property nodeInstanceClass
+             * @property nodeInstanceClass
              */
             nodeInstanceClass: {
                 value: 'nx.graphic.Topology.Node'
@@ -16488,14 +16488,14 @@ var nx = {
              * @property showIcon
              */
             showIcon: {
-                get: function () {
+                get: function() {
                     return this._showIcon !== undefined ? this._showIcon : false;
                 },
-                set: function (value) {
+                set: function(value) {
                     if (this._showIcon !== value) {
                         this._showIcon = value;
                         if (this.status() !== "initializing") {
-                            this.eachNode(function (node) {
+                            this.eachNode(function(node) {
                                 node.showIcon(value);
                             });
                         }
@@ -16528,21 +16528,21 @@ var nx = {
              * @property selectedNodes {nx.data.ObservableCollection}
              */
             selectedNodes: {
-                value: function () {
+                value: function() {
                     return new nx.data.UniqObservableCollection();
                 }
             },
             activeNodes: {
-                set: function (value) {
+                set: function(value) {
                     var nodesLayer = this.getLayer("nodes");
                     var nodeSetLayer = this.getLayer("nodeSet");
                     var watcher = this._activeNodesWatcher;
                     if (!watcher) {
                         watcher = this._activeNodesWatcher = new nx.graphic.Topology.NodeWatcher();
                         watcher.topology(this);
-                        watcher.updater(function () {
+                        watcher.updater(function() {
                             var nodes = watcher.getNodes();
-                            nx.each(nodes, function (node) {
+                            nx.each(nodes, function(node) {
                                 if (node.model().type() == 'vertex') {
                                     nodesLayer.activeElements().add(node);
                                 } else {
@@ -16560,15 +16560,15 @@ var nx = {
                 }
             },
             highlightedNodes: {
-                set: function (value) {
+                set: function(value) {
                     var nodesLayer = this.getLayer("nodes");
                     var nodeSetLayer = this.getLayer("nodeSet");
                     var watcher = this._highlightedNodesWatcher;
                     if (!watcher) {
                         watcher = this._highlightedNodesWatcher = new nx.graphic.Topology.NodeWatcher();
                         watcher.topology(this);
-                        watcher.updater(function () {
-                            nx.each(watcher.getNodes(), function (node) {
+                        watcher.updater(function() {
+                            nx.each(watcher.getNodes(), function(node) {
                                 if (node.model().type() == 'vertex') {
                                     nodesLayer.highlightedElements().add(node);
                                 } else {
@@ -16590,23 +16590,23 @@ var nx = {
             aggregationRule: {}
         },
         methods: {
-            initNode: function () {
+            initNode: function() {
                 var selectedNodes = this.selectedNodes();
-                selectedNodes.on('change', function (sender, args) {
+                selectedNodes.on('change', function(sender, args) {
                     if (args.action == 'add') {
-                        nx.each(args.items, function (node) {
+                        nx.each(args.items, function(node) {
                             node.selected(true);
-                            node.on('remove', this._removeSelectedNode = function () {
+                            node.on('remove', this._removeSelectedNode = function() {
                                 selectedNodes.remove(node);
                             }, this);
                         }, this);
                     } else if (args.action == 'remove') {
-                        nx.each(args.items, function (node) {
+                        nx.each(args.items, function(node) {
                             node.selected(false);
                             node.off('remove', this._removeSelectedNode, this);
                         }, this);
                     } else if (args.action == "clear") {
-                        nx.each(args.items, function (node) {
+                        nx.each(args.items, function(node) {
                             node.selected(false);
                             node.off('remove', this._removeSelectedNode, this);
                         }, this);
@@ -16620,7 +16620,7 @@ var nx = {
              * @param inOption
              * @returns {*}
              */
-            addNode: function (obj, inOption) {
+            addNode: function(obj, inOption) {
                 var vertex = this.graph().addVertex(obj, inOption);
                 if (vertex) {
                     var node = this.getNode(vertex.id());
@@ -16638,10 +16638,10 @@ var nx = {
              * @param arg
              * @returns {boolean}
              */
-            removeNode: function (arg, callback, context) {
+            removeNode: function(arg, callback, context) {
                 this.deleteNode(arg);
             },
-            deleteNode: function (arg, callback, context) {
+            deleteNode: function(arg, callback, context) {
                 var id = arg;
                 if (nx.is(arg, nx.graphic.Topology.AbstractNode)) {
                     id = arg.id();
@@ -16656,9 +16656,10 @@ var nx = {
                     }
                 }
             },
-            _getAggregationTargets: function (vertices) {
+            _getAggregationTargets: function(vertices) {
                 var graph = this.graph();
-                var mark, marks, markmap = {}, NONE = nx.util.uuid();
+                var mark, marks, markmap = {},
+                    NONE = nx.util.uuid();
                 var i, v, vp, vpid, changed, vs = vertices.slice();
                 // iterate unless the aggregation successful
                 do {
@@ -16716,11 +16717,11 @@ var nx = {
                 mark = marks[0];
                 return mark.found;
             },
-            aggregationNodes: function (inNodes, inConfig) {
+            aggregationNodes: function(inNodes, inConfig) {
                 // transform nodes or node ids into vertices
                 var nodes = [],
                     vertices = [];
-                nx.each(inNodes, function (node) {
+                nx.each(inNodes, function(node) {
                     if (!nx.is(node, nx.graphic.Topology.AbstractNode)) {
                         node = this.getNode(node);
                     }
@@ -16738,7 +16739,7 @@ var nx = {
                     throw "wrong input. unable to aggregate.";
                 }
                 aggregateIds = [];
-                nx.each(aggregateVertices, function (vertex) {
+                nx.each(aggregateVertices, function(vertex) {
                     aggregateIds.push(vertex.id());
                 });
                 // check the user rule
@@ -16775,7 +16776,7 @@ var nx = {
              * @param [parentNodeSet]
              * @returns {*}
              */
-            addNodeSet: function (obj, inOption, parentNodeSet) {
+            addNodeSet: function(obj, inOption, parentNodeSet) {
                 var vertex = this.graph().addVertexSet(obj, inOption);
                 if (vertex) {
                     var nodeSet = this.getNode(vertex.id());
@@ -16789,11 +16790,11 @@ var nx = {
                 }
 
             },
-            removeNodeSet: function (arg, callback, context) {
+            removeNodeSet: function(arg, callback, context) {
                 this.deleteNodeSet(arg);
             },
 
-            deleteNodeSet: function (arg, callback, context) {
+            deleteNodeSet: function(arg, callback, context) {
                 if (!arg) {
                     return;
                 }
@@ -16805,7 +16806,7 @@ var nx = {
                 if (nodeSet) {
                     if (nodeSet.collapsed()) {
                         nodeSet.activated(false);
-                        nodeSet.expandNodes(function () {
+                        nodeSet.expandNodes(function() {
                             this.fire("deleteNodeSet", nodeSet);
                             this.graph().deleteVertexSet(id);
                             if (callback) {
@@ -16835,7 +16836,7 @@ var nx = {
              * @param callback
              * @param context
              */
-            eachNode: function (callback, context) {
+            eachNode: function(callback, context) {
                 this.getLayer("nodes").eachNode(callback, context || this);
                 this.getLayer("nodeSet").eachNodeSet(callback, context || this);
             },
@@ -16845,14 +16846,14 @@ var nx = {
              * @param id
              * @returns {*}
              */
-            getNode: function (id) {
+            getNode: function(id) {
                 return this.getLayer("nodes").getNode(id) || this.getLayer("nodeSet").getNodeSet(id);
             },
             /**
              * Get all visible nodes
              * @returns {Array}
              */
-            getNodes: function () {
+            getNodes: function() {
                 var nodes = this.getLayer("nodes").nodes();
                 var nodeSets = this.getLayer("nodeSet").nodeSets();
                 if (nodeSets && nodeSets.length !== 0) {
@@ -16868,7 +16869,7 @@ var nx = {
              * @param width {Number}
              * @param height {Number}
              */
-            registerIcon: function (name, url, width, height) {
+            registerIcon: function(name, url, width, height) {
                 var XLINK = 'http://www.w3.org/1999/xlink';
                 var NS = "http://www.w3.org/2000/svg";
                 var icon1 = document.createElementNS(NS, "image");
@@ -16894,7 +16895,7 @@ var nx = {
              * Batch action, highlight node and related nodes and connected links.
              * @param inNode
              */
-            highlightRelatedNode: function (inNode) {
+            highlightRelatedNode: function(inNode) {
                 var node;
                 if (inNode == null) {
                     return;
@@ -16922,7 +16923,7 @@ var nx = {
 
 
                 // highlight connected nodes and nodeSets
-                node.eachConnectedNode(function (n) {
+                node.eachConnectedNode(function(n) {
                     if (nx.is(n, 'nx.graphic.Topology.NodeSet')) {
                         nodeSetLayer.highlightedElements().add(n);
                     } else {
@@ -16942,7 +16943,7 @@ var nx = {
              * Batch action, highlight node and related nodes and connected links.
              * @param inNode
              */
-            activeRelatedNode: function (inNode) {
+            activeRelatedNode: function(inNode) {
 
                 var node;
                 if (!inNode) {
@@ -16971,7 +16972,7 @@ var nx = {
 
 
                 // highlight connected nodes and nodeSets
-                node.eachConnectedNode(function (n) {
+                node.eachConnectedNode(function(n) {
                     if (nx.is(n, 'nx.graphic.Topology.NodeSet')) {
                         nodeSetLayer.activeElements().add(n);
                     } else {
@@ -16994,7 +16995,7 @@ var nx = {
              * @param [context] {Object} callback context
              * @param nodes {Array} nodes collection
              */
-            zoomByNodes: function (nodes, callback, context, boundScale) {
+            zoomByNodes: function(nodes, callback, context, boundScale) {
                 // TODO more overload about nodes
                 if (!nx.is(nodes, Array)) {
                     nodes = [nodes];
@@ -17013,7 +17014,7 @@ var nx = {
                     // just centralize them instead of zoom
                     center = nx.geometry.Vector.transform(bound.center, stage.matrix());
                     delta = [stage.width() / 2 - center[0], stage.height() / 2 - center[1]];
-                    stage.scalingLayer().setTransition(function () {
+                    stage.scalingLayer().setTransition(function() {
                         this.adjustLayout();
                         /* jshint -W030 */
                         callback && callback.call(context || this);
@@ -17037,7 +17038,7 @@ var nx = {
                     bound.height *= boundScale;
                     bound.width *= boundScale;
 
-                    this.zoomByBound(bound, function () {
+                    this.zoomByBound(bound, function() {
                         this.adjustLayout();
                         /* jshint -W030 */
                         callback && callback.call(context || this);
@@ -17045,9 +17046,9 @@ var nx = {
                     }, this);
                 }
             },
-            getModelBoundByNodes: function (nodes, isIncludeInvisibleNodes) {
+            getModelBoundByNodes: function(nodes, isIncludeInvisibleNodes) {
                 var xmin, xmax, ymin, ymax;
-                nx.each(nodes, function (inNode) {
+                nx.each(nodes, function(inNode) {
                     var vertex;
                     if (nx.is(inNode, nx.graphic.Topology.AbstractNode)) {
                         vertex = inNode.model();
@@ -17091,7 +17092,7 @@ var nx = {
              * @returns {Array}
              */
 
-            getBoundByNodes: function (inNodes, isNotIncludeLabel) {
+            getBoundByNodes: function(inNodes, isNotIncludeLabel) {
 
                 if (inNodes == null || inNodes.length === 0) {
                     inNodes = this.getNodes();
@@ -17111,7 +17112,7 @@ var nx = {
                 var boundAry = [];
 
 
-                nx.each(inNodes, function (inNode) {
+                nx.each(inNodes, function(inNode) {
                     var node;
                     if (nx.is(inNode, nx.graphic.Topology.AbstractNode)) {
                         node = inNode;
@@ -17137,14 +17138,14 @@ var nx = {
                 var lastIndex = boundAry.length - 1;
 
                 //
-                boundAry.sort(function (a, b) {
+                boundAry.sort(function(a, b) {
                     return a.left - b.left;
                 });
 
                 bound.x = bound.left = boundAry[0].left;
                 bound.maxX = boundAry[lastIndex].left;
 
-                boundAry.sort(function (a, b) {
+                boundAry.sort(function(a, b) {
                     return (a.left + a.width) - (b.left + b.width);
                 });
 
@@ -17152,14 +17153,14 @@ var nx = {
 
 
                 //
-                boundAry.sort(function (a, b) {
+                boundAry.sort(function(a, b) {
                     return a.top - b.top;
                 });
 
                 bound.y = bound.top = boundAry[0].top;
                 bound.maxY = boundAry[lastIndex].top;
 
-                boundAry.sort(function (a, b) {
+                boundAry.sort(function(a, b) {
                     return (a.top + a.height) - (b.top + b.height);
                 });
 
@@ -17169,31 +17170,30 @@ var nx = {
 
 
             },
-            _moveSelectionNodes: function (event, node) {
+            _moveSelectionNodes: function(event, node) {
                 if (this.nodeDraggable()) {
                     var nodes = this.selectedNodes().toArray();
                     var stageScale = this.stageScale();
                     if (nodes.indexOf(node) === -1) {
                         node.move(event.drag.delta[0] * stageScale, event.drag.delta[1] * stageScale);
                     } else {
-                        nx.each(nodes, function (node) {
+                        nx.each(nodes, function(node) {
                             node.move(event.drag.delta[0] * stageScale, event.drag.delta[1] * stageScale);
                         });
                     }
                 }
             },
-            expandNodes: function (nodes, sourcePosition, callback, context, isAnimate) {
+            expandNodes: function(nodes, sourcePosition, callback, context, isAnimate) {
 
                 var nodesLength = nx.is(nodes, Array) ? nodes.length : nx.util.keys(nodes).length;
-                callback = callback || function () {
-                };
+                callback = callback || function() {};
 
 
                 if (nodesLength > 150 || nodesLength === 0 || isAnimate === false) {
                     callback.call(context || this, this);
                 } else {
                     var positionMap = [];
-                    nx.each(nodes, function (node) {
+                    nx.each(nodes, function(node) {
                         positionMap.push({
                             id: node.id(),
                             position: node.position(),
@@ -17209,8 +17209,8 @@ var nx = {
                     var ani = this._nodesAnimation = new nx.graphic.Animation({
                         duration: 600
                     });
-                    ani.callback(function (progress) {
-                        nx.each(positionMap, function (item) {
+                    ani.callback(function(progress) {
+                        nx.each(positionMap, function(item) {
                             var _position = item.position;
                             var node = item.node;
                             if (node && node.model()) {
@@ -17222,23 +17222,22 @@ var nx = {
                         });
                     }.bind(this));
 
-                    ani.complete(function () {
+                    ani.complete(function() {
                         callback.call(context || this, this);
                     }.bind(this));
                     ani.start();
                 }
             },
-            collapseNodes: function (nodes, targetPosition, callback, context, isAnimate) {
+            collapseNodes: function(nodes, targetPosition, callback, context, isAnimate) {
                 var nodesLength = nx.is(nodes, Array) ? nodes.length : nx.util.keys(nodes).length;
-                callback = callback || function () {
-                };
+                callback = callback || function() {};
 
 
                 if (nodesLength > 150 || nodesLength === 0 || isAnimate === false) {
                     callback.call(context || this, this);
                 } else {
                     var positionMap = [];
-                    nx.each(nodes, function (node) {
+                    nx.each(nodes, function(node) {
                         positionMap.push({
                             id: node.id(),
                             position: node.position(),
@@ -17256,8 +17255,8 @@ var nx = {
                     var ani = this._nodesAnimation = new nx.graphic.Animation({
                         duration: 600
                     });
-                    ani.callback(function (progress) {
-                        nx.each(positionMap, function (item) {
+                    ani.callback(function(progress) {
+                        nx.each(positionMap, function(item) {
                             var _position = item.position;
                             var node = item.node;
                             if (node && node.model()) {
@@ -17269,8 +17268,8 @@ var nx = {
                         });
                     }.bind(this));
 
-                    ani.complete(function () {
-                        nx.each(positionMap, function (item) {
+                    ani.complete(function() {
+                        nx.each(positionMap, function(item) {
                             item.vertex.position(item.vertexPosition);
                         });
                         callback.call(context || this, this);
@@ -17278,12 +17277,12 @@ var nx = {
                     ani.start();
                 }
             },
-            expandAll: function () {
+            expandAll: function() {
                 var nodeSetLayer = this.getLayer('nodeSet');
                 //console.time('expandAll');
-                var fn = function (callback) {
+                var fn = function(callback) {
                     var isFinished = true;
-                    nodeSetLayer.eachNodeSet(function (nodeSet) {
+                    nodeSetLayer.eachNodeSet(function(nodeSet) {
                         if (nodeSet.visible()) {
                             nodeSet.animation(false);
                             nodeSet.collapsed(false);
@@ -17299,28 +17298,69 @@ var nx = {
 
                 this.showLoading();
 
-                setTimeout(function () {
-                    fn(function () {
+                setTimeout(function() {
+                    fn(function() {
 
-                        nodeSetLayer.eachNodeSet(function (nodeSet) {
+                        nodeSetLayer.eachNodeSet(function(nodeSet) {
                             nodeSet.animation(true);
                         });
                         this.stage().resetFitMatrix();
                         this.hideLoading();
-                        this.fit(function () {
+                        this.fit(function() {
                             this.blockEvent(false);
                             this.fire('expandAll');
                         }, this);
                     }.bind(this));
                 }.bind(this), 100);
+            },
+            collapseAll: function() {
+                var graph = this.graph();
+                var rootVertexSets = {};
+                graph.eachVertexSet(function(vertexSet, id) {
+                    if (!vertexSet.rootVertexSet()) {
+                        rootVertexSets[id] = vertexSet
+                    }
+                });
+
+                this.showLoading();
+
+
+
+                nx.each(rootVertexSets, function(vertex, id) {
+                    var nodeSet = this.getNode(id);
+                    if (nodeSet) {
+                        nodeSet.animation(false);
+                        nodeSet.collapsed(true);
+                    }
+                }, this);
+
+
+                var nodeSetLayer = this.getLayer('nodeSet');
+                setTimeout(function() {
+                    nodeSetLayer.eachNodeSet(function(nodeSet) {
+                        nodeSet.animation(true);
+                    });
+                    this.stage().resetFitMatrix();
+                    this.hideLoading();
+                    this.fit(function() {
+                        this.blockEvent(false);
+                        this.fire('collapseAll');
+                    }, this);
+                }.bind(this), 100);
+
+
+
+
+
+
+
 
             }
         }
     });
 
 
-})(nx, nx.global);
-(function (nx, global) {
+})(nx, nx.global);(function (nx, global) {
 
     /**
      * Links mixin class
@@ -18376,7 +18416,7 @@ var nx = {
     });
 
 
-})(nx, nx.global);(function (nx, global) {
+})(nx, nx.global);(function(nx, global) {
     /**
      * Topology's batch operation class
      * @class nx.graphic.Topology.Categories
@@ -18385,27 +18425,45 @@ var nx = {
     nx.define("nx.graphic.Topology.Categories", {
         events: [],
         properties: {
+            /**
+             * 
+             * @property loading
+             */
+            loading: {
+                get: function() {
+                    return this._loading || false;
+                },
+                set: function(value) {
+                    this._loading = value;
+                    if (value) {
+                        nx.dom.Document.html().addClass('n-waitCursor');
+                        this.view().dom().addClass('n-topology-loading');
+                        this.view('loading').dom().setStyle('display', 'block');
+                    } else {
+                        nx.dom.Document.html().removeClass('n-waitCursor');
+                        this.view().dom().removeClass('n-topology-loading');
+                        this.view('loading').dom().setStyle('display', 'none');
+                    }
+
+                }
+            },
         },
         methods: {
             /**
              * Show loading indicator
              * @method showLoading
              */
-            showLoading: function () {
-                nx.dom.Document.html().addClass('n-waitCursor');
-                this.view().dom().addClass('n-topology-loading');
-                this.view('loading').dom().setStyle('display', 'block');
+            showLoading: function() {
+                this.loading(true);
             },
             /**
              * Hide loading indicator
              * @method hideLoading
              */
-            hideLoading: function () {
-                nx.dom.Document.html().removeClass('n-waitCursor');
-                this.view().dom().removeClass('n-topology-loading');
-                this.view('loading').dom().setStyle('display', 'none');
+            hideLoading: function() {
+                this.loading(false);
             },
-            exportPNG: function () {
+            exportPNG: function() {
 
                 this.fit();
 
@@ -18415,34 +18473,34 @@ var nx = {
                 var translateX = topo.matrix().x();
                 var translateY = topo.matrix().y();
                 var stage = this.stage().view().dom().$dom.querySelector('.stage').cloneNode(true);
-                nx.each(stage.querySelectorAll('.fontIcon'), function (icon) {
+                nx.each(stage.querySelectorAll('.fontIcon'), function(icon) {
                     icon.remove();
                 });
 
-                nx.each(stage.querySelectorAll('.link'), function (item) {
+                nx.each(stage.querySelectorAll('.link'), function(item) {
                     item.style.stroke = '#26A1C5';
                     item.style.fill = 'none';
                     item.style.background = 'transparent';
                 });
 
-                nx.each(stage.querySelectorAll('line.link-set-bg'), function (item) {
+                nx.each(stage.querySelectorAll('line.link-set-bg'), function(item) {
                     item.style.stroke = '#26A1C5';
                 });
 
-                nx.each(stage.querySelectorAll('text.node-label'), function (item) {
+                nx.each(stage.querySelectorAll('text.node-label'), function(item) {
                     item.style.fontSize = '12px';
                     item.style.fontFamily = 'Tahoma';
                 });
 
-                nx.each(stage.querySelectorAll('.n-hidden'), function (hidden) {
+                nx.each(stage.querySelectorAll('.n-hidden'), function(hidden) {
                     hidden.remove();
                 });
 
-                nx.each(stage.querySelectorAll('.selectedBG'), function (item) {
+                nx.each(stage.querySelectorAll('.selectedBG'), function(item) {
                     item.remove();
                 });
 
-                nx.each(stage.querySelectorAll('[data-nx-type="nx.graphic.Topology.GroupsLayer"]'), function (item) {
+                nx.each(stage.querySelectorAll('[data-nx-type="nx.graphic.Topology.GroupsLayer"]'), function(item) {
                     item.remove();
                 });
 
@@ -18467,7 +18525,7 @@ var nx = {
 
                 ctx.drawImage(img, 0, 0);
                 ctx.font = fontSize + "px next-font";
-                this.eachNode(function (node) {
+                this.eachNode(function(node) {
                     var iconType = node.iconType();
                     var iconObject = nx.graphic.Icons.get(iconType);
                     ctx.fillStyle = '#fff';
@@ -18482,7 +18540,7 @@ var nx = {
                 event.initMouseEvent('click', true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
                 link.dispatchEvent(event);
             },
-            __drawBG: function (inBound) {
+            __drawBG: function(inBound) {
                 var bound = inBound || this.stage().getContentBound();
                 var bg = this.stage().view('bg');
                 bg.sets({
@@ -22642,18 +22700,40 @@ var nx = {
                 var _longitude = longitude.split(".").pop(),
                     _latitude = latitude.split(".").pop();
 
-                topo.graph().eachVertexSet(function (vertex) {
+                topo.graph().vertexSets().toArray().reverse().forEach(function (dictItem) {
+                    var vertex = dictItem.value();
                     vertex.positionGetter(function () {
                         var p = projection([nx.path(vertex, _longitude), nx.path(vertex, _latitude)]);
-                        return {
-                            x: p[0],
-                            y: p[1]
-                        };
+                        if(p){
+                            return {
+                                x: p[0],
+                                y: p[1]
+                            };
+                        }else{
+                            if(console){
+                                console.log("Data Error",[nx.path(vertex, _longitude), nx.path(vertex, _latitude)]);
+                            }
+                            return {
+                                x: 0,
+                                y: 0
+                            };
+                        }
+
                     });
                     vertex.positionSetter(function (position) {
                         var p = projection.invert([position.x, position.y]);
-                        vertex.set(_longitude, p[0]);
-                        vertex.set(_latitude, p[1]);
+                        if(p){
+                            vertex.set(_longitude, p[0]);
+                            vertex.set(_latitude, p[1]);
+                        }else{
+                            if(console){
+                                console.log("Data Error",position);
+                            }
+                            return {
+                                x: 0,
+                                y: 0
+                            };
+                        }
                     });
 
                     vertex.position(vertex.positionGetter().call(vertex));
@@ -22663,15 +22743,36 @@ var nx = {
                 topo.graph().eachVertex(function (vertex) {
                     vertex.positionGetter(function () {
                         var p = projection([nx.path(vertex, _longitude), nx.path(vertex, _latitude)]);
-                        return {
-                            x: p[0],
-                            y: p[1]
-                        };
+                        if(p){
+                            return {
+                                x: p[0],
+                                y: p[1]
+                            };
+                        }else{
+                            if(console){
+                                console.log("Data Error",[nx.path(vertex, _longitude), nx.path(vertex, _latitude)]);
+                            }
+                            return {
+                                x: 0,
+                                y: 0
+                            };
+                        }
                     });
                     vertex.positionSetter(function (position) {
                         var p = projection.invert([position.x, position.y]);
-                        vertex.set(_longitude, p[0]);
-                        vertex.set(_latitude, p[1]);
+                        if(p){
+                            vertex.set(_longitude, p[0]);
+                            vertex.set(_latitude, p[1]);
+                        }else{
+                            if(console){
+                                console.log("Data Error",position);
+                            }
+                            return {
+                                x: 0,
+                                y: 0
+                            };
+                        }
+
                     });
 
                     vertex.position(vertex.positionGetter().call(vertex));
@@ -25886,10 +25987,25 @@ var nx = {
     });
 })(nx, nx.global);(function (nx, global) {
 
+    /**
+     * Base path class.
+     * @class nx.graphic.Topology.BasePath
+     * @extend nx.graphic.BasePath
+     * @module nx.graphic.Topology
+     */
+
     nx.define("nx.graphic.Topology.BasePath", nx.graphic.Component, {
         events: [],
         properties: {
+            /**
+             * nodes to over path
+             * @property nodes
+             */
             nodes: {},
+            /**
+             * path 'd' generator function
+             * @property pathGenerator
+             */
             pathGenerator: {
                 value: function () {
                     return function () {
@@ -25897,6 +26013,11 @@ var nx = {
                     };
                 }
             },
+            /**
+             * path style object
+             * @property path style
+             *
+             */
             pathStyle: {
                 value: function () {
                     return {
@@ -25906,6 +26027,10 @@ var nx = {
                     };
                 }
             },
+            /**
+             * topology reference
+             * @property topology
+             */
             topology: {}
         },
         view: {
@@ -25954,7 +26079,143 @@ var nx = {
             }
         }
     });
-})(nx, nx.global);(function (nx, global) {
+})(nx, nx.global);(function(nx, global) {
+    var Vector = nx.geometry.Vector;
+    var Line = nx.geometry.Line;
+
+    /**
+     * Path over nodeset, has limited use scene
+     * @class nx.graphic.Topology.NodeSetPath
+     * @extend nx.graphic.BasePath
+     * @module nx.graphic.Topology
+     */
+
+    nx.define("nx.graphic.Topology.NodeSetPath", nx.graphic.Topology.BasePath, {
+        properties: {
+            /**
+             * arrow style, could be null, cap, end
+             * @property {String}
+             */
+            arrow: {
+                value: null
+            },
+            pathGenerator: {
+                value: function() {
+                    return function() {
+                        var nodes = this.nodes();
+                        var topo = this.topology();
+                        if (!topo || !nodes) {
+                            return;
+                        }
+                        var graph = topo.graph();
+                        var visibleNodes = [];
+                        nodes.forEach(function(id) {
+                            var vertex = graph.getVertex(id);
+                            if (!vertex.generated()) {
+                                vertex = vertex.generatedRootVertexSet();
+                            }
+                            var node = topo.getNode(vertex.id());
+                            if (visibleNodes.indexOf(node) == -1) {
+                                visibleNodes.push(node);
+                            }
+                        });
+                        var arrow = this.arrow();
+                        var pathStyle = this.pathStyle();
+                        var stageScale = topo.stageScale();
+                        var revisionScale = topo.revisionScale();
+                        var padding = (topo.showIcon() ? 20 : 8) * stageScale * revisionScale;
+                        var strokeWidth = (parseInt(pathStyle['stroke-width'], 10) || 1) * stageScale;
+                        var visibleNodesLength = visibleNodes.length;
+                        var d = this._dArray = [];
+
+                        for (var i = 0; i < visibleNodesLength - 1; i++) {
+                            var sourceNode = visibleNodes[i];
+                            var targetNode = visibleNodes[i + 1];
+                            var line = new Line(sourceNode.vector(), targetNode.vector());
+                            // padding start
+                            if (i == 0) {
+                                line = line.pad(padding, 0);
+                                d.push('M', line.start.x, line.start.y);
+                            } else if (i == visibleNodesLength - 2) {
+                                line = line.pad(0, arrow ? padding + strokeWidth : padding );
+                                d.push('L', line.start.x, line.start.y);
+                                d.push('L', line.end.x, line.end.y);
+                            } else {
+                                d.push('L', line.start.x, line.start.y);
+                            }
+                        }
+
+                        this._drawArrow();
+                        return d.join(" ");
+                    };
+                }
+            }
+        },
+        methods: {
+            attach: function(parent) {
+                this.inherited(parent);
+                var el = this._arrowEL = new nx.graphic.Path();
+                el.attach(this);
+
+            },
+            _drawArrow: function() {
+                var arrow = this.arrow();
+
+                if (!this._arrowEL || !arrow) {
+                    return;
+                }
+                var arrowD = [];
+                var d = this._dArray;
+                var len = d.length;
+                var topo = this.topology();
+                var pathStyle = this.pathStyle();
+                var stageScale = topo.stageScale();
+                var revisionScale = topo.revisionScale();
+                var strokeWidth = (parseInt(pathStyle['stroke-width'], 10) || 1) * stageScale;
+                var line = new Line(new Vector(d[len - 5], d[len - 4]), new Vector(d[len - 2], d[len - 1]));
+                var v1, v2, v3;
+
+                if (arrow == 'cap') {
+                    v1 = new Vector(0, -strokeWidth);
+                    v2 = new Vector(strokeWidth, strokeWidth);
+                    v3 = new Vector(-strokeWidth, strokeWidth);
+                    arrowD.push('M', line.end.x, line.end.y);
+                    line = line.translate(v1);
+                    arrowD.push('L', line.end.x, line.end.y);
+                    line = line.translate(v2);
+                    arrowD.push('L', line.end.x, line.end.y);
+                    line = line.translate(v3);
+                    arrowD.push('L', line.end.x, line.end.y);
+                    arrowD.push('Z');
+                    this._arrowEL.set('d', arrowD.join(" "));
+                    this._arrowEL.dom().setStyle('stroke-width', 1 * stageScale);
+                    this._arrowEL.dom().setStyle('fill', pathStyle['stroke']);
+                    this._arrowEL.dom().setStyle('stroke', pathStyle['stroke']);
+
+                } else if (arrow == 'end') {
+                    v1 = new Vector(0, -strokeWidth/2);
+                    v2 = new Vector(strokeWidth, strokeWidth/2);
+                    v3 = new Vector(-strokeWidth, strokeWidth/2);
+                    arrowD.push('M', line.end.x, line.end.y);
+                    line = line.translate(v1);
+                    arrowD.push('L', line.end.x, line.end.y);
+                    line = line.translate(v2);
+                    arrowD.push('L', line.end.x, line.end.y);
+                    line = line.translate(v3);
+                    arrowD.push('L', line.end.x, line.end.y);
+                    arrowD.push('Z');
+                    this._arrowEL.set('d', arrowD.join(" "));
+                    this._arrowEL.dom().setStyle('stroke-width', 1 * stageScale);
+                    this._arrowEL.dom().setStyle('fill', pathStyle['stroke']);
+                    this._arrowEL.dom().setStyle('stroke', pathStyle['stroke']);
+                }
+
+            }
+
+        }
+
+    });
+})(nx, window);(function (nx, global) {
     var util = nx.util;
     /**
      * Path layer class

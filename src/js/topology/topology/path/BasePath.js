@@ -1,9 +1,24 @@
 (function (nx, global) {
 
+    /**
+     * Base path class.
+     * @class nx.graphic.Topology.BasePath
+     * @extend nx.graphic.BasePath
+     * @module nx.graphic.Topology
+     */
+
     nx.define("nx.graphic.Topology.BasePath", nx.graphic.Component, {
         events: [],
         properties: {
+            /**
+             * nodes to over path
+             * @property nodes
+             */
             nodes: {},
+            /**
+             * path 'd' generator function
+             * @property pathGenerator
+             */
             pathGenerator: {
                 value: function () {
                     return function () {
@@ -11,6 +26,11 @@
                     };
                 }
             },
+            /**
+             * path style object
+             * @property path style
+             *
+             */
             pathStyle: {
                 value: function () {
                     return {
@@ -20,6 +40,10 @@
                     };
                 }
             },
+            /**
+             * topology reference
+             * @property topology
+             */
             topology: {}
         },
         view: {

@@ -72,18 +72,40 @@
                 var _longitude = longitude.split(".").pop(),
                     _latitude = latitude.split(".").pop();
 
-                topo.graph().eachVertexSet(function (vertex) {
+                topo.graph().vertexSets().toArray().reverse().forEach(function (dictItem) {
+                    var vertex = dictItem.value();
                     vertex.positionGetter(function () {
                         var p = projection([nx.path(vertex, _longitude), nx.path(vertex, _latitude)]);
-                        return {
-                            x: p[0],
-                            y: p[1]
-                        };
+                        if(p){
+                            return {
+                                x: p[0],
+                                y: p[1]
+                            };
+                        }else{
+                            if(console){
+                                console.log("Data Error",[nx.path(vertex, _longitude), nx.path(vertex, _latitude)]);
+                            }
+                            return {
+                                x: 0,
+                                y: 0
+                            };
+                        }
+
                     });
                     vertex.positionSetter(function (position) {
                         var p = projection.invert([position.x, position.y]);
-                        vertex.set(_longitude, p[0]);
-                        vertex.set(_latitude, p[1]);
+                        if(p){
+                            vertex.set(_longitude, p[0]);
+                            vertex.set(_latitude, p[1]);
+                        }else{
+                            if(console){
+                                console.log("Data Error",position);
+                            }
+                            return {
+                                x: 0,
+                                y: 0
+                            };
+                        }
                     });
 
                     vertex.position(vertex.positionGetter().call(vertex));
@@ -93,15 +115,36 @@
                 topo.graph().eachVertex(function (vertex) {
                     vertex.positionGetter(function () {
                         var p = projection([nx.path(vertex, _longitude), nx.path(vertex, _latitude)]);
-                        return {
-                            x: p[0],
-                            y: p[1]
-                        };
+                        if(p){
+                            return {
+                                x: p[0],
+                                y: p[1]
+                            };
+                        }else{
+                            if(console){
+                                console.log("Data Error",[nx.path(vertex, _longitude), nx.path(vertex, _latitude)]);
+                            }
+                            return {
+                                x: 0,
+                                y: 0
+                            };
+                        }
                     });
                     vertex.positionSetter(function (position) {
                         var p = projection.invert([position.x, position.y]);
-                        vertex.set(_longitude, p[0]);
-                        vertex.set(_latitude, p[1]);
+                        if(p){
+                            vertex.set(_longitude, p[0]);
+                            vertex.set(_latitude, p[1]);
+                        }else{
+                            if(console){
+                                console.log("Data Error",position);
+                            }
+                            return {
+                                x: 0,
+                                y: 0
+                            };
+                        }
+
                     });
 
                     vertex.position(vertex.positionGetter().call(vertex));

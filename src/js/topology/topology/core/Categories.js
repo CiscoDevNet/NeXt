@@ -1,4 +1,4 @@
-(function (nx, global) {
+(function(nx, global) {
     /**
      * Topology's batch operation class
      * @class nx.graphic.Topology.Categories
@@ -7,27 +7,45 @@
     nx.define("nx.graphic.Topology.Categories", {
         events: [],
         properties: {
+            /**
+             * 
+             * @property loading
+             */
+            loading: {
+                get: function() {
+                    return this._loading || false;
+                },
+                set: function(value) {
+                    this._loading = value;
+                    if (value) {
+                        nx.dom.Document.html().addClass('n-waitCursor');
+                        this.view().dom().addClass('n-topology-loading');
+                        this.view('loading').dom().setStyle('display', 'block');
+                    } else {
+                        nx.dom.Document.html().removeClass('n-waitCursor');
+                        this.view().dom().removeClass('n-topology-loading');
+                        this.view('loading').dom().setStyle('display', 'none');
+                    }
+
+                }
+            },
         },
         methods: {
             /**
              * Show loading indicator
              * @method showLoading
              */
-            showLoading: function () {
-                nx.dom.Document.html().addClass('n-waitCursor');
-                this.view().dom().addClass('n-topology-loading');
-                this.view('loading').dom().setStyle('display', 'block');
+            showLoading: function() {
+                this.loading(true);
             },
             /**
              * Hide loading indicator
              * @method hideLoading
              */
-            hideLoading: function () {
-                nx.dom.Document.html().removeClass('n-waitCursor');
-                this.view().dom().removeClass('n-topology-loading');
-                this.view('loading').dom().setStyle('display', 'none');
+            hideLoading: function() {
+                this.loading(false);
             },
-            exportPNG: function () {
+            exportPNG: function() {
 
                 this.fit();
 
@@ -37,34 +55,34 @@
                 var translateX = topo.matrix().x();
                 var translateY = topo.matrix().y();
                 var stage = this.stage().view().dom().$dom.querySelector('.stage').cloneNode(true);
-                nx.each(stage.querySelectorAll('.fontIcon'), function (icon) {
+                nx.each(stage.querySelectorAll('.fontIcon'), function(icon) {
                     icon.remove();
                 });
 
-                nx.each(stage.querySelectorAll('.link'), function (item) {
+                nx.each(stage.querySelectorAll('.link'), function(item) {
                     item.style.stroke = '#26A1C5';
                     item.style.fill = 'none';
                     item.style.background = 'transparent';
                 });
 
-                nx.each(stage.querySelectorAll('line.link-set-bg'), function (item) {
+                nx.each(stage.querySelectorAll('line.link-set-bg'), function(item) {
                     item.style.stroke = '#26A1C5';
                 });
 
-                nx.each(stage.querySelectorAll('text.node-label'), function (item) {
+                nx.each(stage.querySelectorAll('text.node-label'), function(item) {
                     item.style.fontSize = '12px';
                     item.style.fontFamily = 'Tahoma';
                 });
 
-                nx.each(stage.querySelectorAll('.n-hidden'), function (hidden) {
+                nx.each(stage.querySelectorAll('.n-hidden'), function(hidden) {
                     hidden.remove();
                 });
 
-                nx.each(stage.querySelectorAll('.selectedBG'), function (item) {
+                nx.each(stage.querySelectorAll('.selectedBG'), function(item) {
                     item.remove();
                 });
 
-                nx.each(stage.querySelectorAll('[data-nx-type="nx.graphic.Topology.GroupsLayer"]'), function (item) {
+                nx.each(stage.querySelectorAll('[data-nx-type="nx.graphic.Topology.GroupsLayer"]'), function(item) {
                     item.remove();
                 });
 
@@ -89,7 +107,7 @@
 
                 ctx.drawImage(img, 0, 0);
                 ctx.font = fontSize + "px next-font";
-                this.eachNode(function (node) {
+                this.eachNode(function(node) {
                     var iconType = node.iconType();
                     var iconObject = nx.graphic.Icons.get(iconType);
                     ctx.fillStyle = '#fff';
@@ -104,7 +122,7 @@
                 event.initMouseEvent('click', true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
                 link.dispatchEvent(event);
             },
-            __drawBG: function (inBound) {
+            __drawBG: function(inBound) {
                 var bound = inBound || this.stage().getContentBound();
                 var bg = this.stage().view('bg');
                 bg.sets({
