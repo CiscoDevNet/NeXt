@@ -13758,17 +13758,17 @@ var nx = {
         }
 
     });
-})(nx, nx.global);(function (nx, global) {
+})(nx, nx.global);(function(nx, global) {
     var util = nx.util;
     nx.define('nx.data.ObservableGraph.Vertices', nx.data.ObservableObject, {
         events: ['addVertex', 'removeVertex', 'deleteVertex', 'updateVertex', 'updateVertexCoordinate'],
         properties: {
 
             nodes: {
-                get: function () {
+                get: function() {
                     return this._nodes || [];
                 },
-                set: function (value) {
+                set: function(value) {
 
                     // off previous ObservableCollection event
                     if (this._nodes && nx.is(this._nodes, nx.data.ObservableCollection)) {
@@ -13779,7 +13779,7 @@ var nx = {
 
                     if (nx.is(value, nx.data.ObservableCollection)) {
                         value.on('change', this._nodesCollectionProcessor, this);
-                        value.each(function (value) {
+                        value.each(function(value) {
                             this._addVertex(value);
                         }, this);
                         this._nodes = value;
@@ -13792,13 +13792,13 @@ var nx = {
 
             vertexFilter: {},
             vertices: {
-                value: function () {
+                value: function() {
                     var vertices = new nx.data.ObservableDictionary();
-                    vertices.on('change', function (sender, args) {
+                    vertices.on('change', function(sender, args) {
                         var action = args.action;
                         var items = args.items;
                         if (action == 'clear') {
-                            nx.each(items, function (item) {
+                            nx.each(items, function(item) {
                                 this.deleteVertex(item.key());
                             }, this);
                         }
@@ -13807,9 +13807,9 @@ var nx = {
                 }
             },
             visibleVertices: {
-                get: function () {
+                get: function() {
                     var vertices = {};
-                    this.eachVertex(function (vertex, id) {
+                    this.eachVertex(function(vertex, id) {
                         if (vertex.visible()) {
                             vertices[id] = vertex;
                         }
@@ -13828,7 +13828,7 @@ var nx = {
              * @param {Object} [config] Config object
              * @returns {nx.data.Vertex}
              */
-            addVertex: function (data, config) {
+            addVertex: function(data, config) {
                 var vertex;
                 var nodes = this.nodes();
                 var vertices = this.vertices();
@@ -13856,11 +13856,11 @@ var nx = {
 
                 return vertex;
             },
-            _addVertex: function (data) {
+            _addVertex: function(data) {
                 var vertices = this.vertices();
                 var identityKey = this.identityKey();
 
-                if (typeof (data) == 'string' || typeof (data) == 'number') {
+                if (typeof(data) == 'string' || typeof(data) == 'number') {
                     data = {
                         data: data
                     };
@@ -13876,9 +13876,12 @@ var nx = {
                 var vertex = new nx.data.Vertex(data);
 
                 var vertexPositionGetter = this.vertexPositionGetter();
-                var vertexPositionSetter = this.vertexPositionSetter();
-                if (vertexPositionGetter && vertexPositionSetter) {
+                if (vertexPositionGetter) {
                     vertex.positionGetter(vertexPositionGetter);
+                }
+
+                var vertexPositionSetter = this.vertexPositionSetter();
+                if (vertexPositionSetter) {
                     vertex.positionSetter(vertexPositionSetter);
                 }
 
@@ -13892,7 +13895,7 @@ var nx = {
                 //delegate synchronize
                 if (nx.is(data, nx.data.ObservableObject)) {
                     var fn = data.set;
-                    data.set = function (key, value) {
+                    data.set = function(key, value) {
                         fn.call(data, key, value);
                         //
                         if (vertex.__properties__.indexOf(key) == -1) {
@@ -13907,7 +13910,7 @@ var nx = {
 
 
                 // init position
-                vertex.position(vertex.positionGetter().call(vertex));
+                vertex.position(vertex.positionGetter().call(vertex, vertex));
 
                 vertices.setItem(id, vertex);
 
@@ -13920,7 +13923,7 @@ var nx = {
 
                 return vertex;
             },
-            generateVertex: function (vertex) {
+            generateVertex: function(vertex) {
                 if (vertex.visible() && !vertex.generated() && !vertex.restricted()) {
 
                     vertex.on('updateCoordinate', this._updateVertexCoordinateFN, this);
@@ -13933,7 +13936,7 @@ var nx = {
                     vertex.generated(true);
                 }
             },
-            _updateVertexCoordinateFN: function (vertex) {
+            _updateVertexCoordinateFN: function(vertex) {
                 /**
                  * @event updateVertexCoordinate
                  * @param sender {Object}  Trigger instance
@@ -13949,17 +13952,17 @@ var nx = {
              * @param {String} id
              * @returns {Boolean}
              */
-            removeVertex: function (id) {
+            removeVertex: function(id) {
                 var vertex = this.vertices().getItem(id);
                 if (!vertex) {
                     return false;
                 }
 
-                nx.each(vertex.edgeSets(), function (edgeSet, linkKey) {
+                nx.each(vertex.edgeSets(), function(edgeSet, linkKey) {
                     this.removeEdgeSet(linkKey);
                 }, this);
 
-                nx.each(vertex.edgeSetCollections(), function (esc, linkKey) {
+                nx.each(vertex.edgeSetCollections(), function(esc, linkKey) {
                     this.deleteEdgeSetCollection(linkKey);
                 }, this);
 
@@ -13980,7 +13983,7 @@ var nx = {
              * @param {id} id
              * @returns {Boolean}
              */
-            deleteVertex: function (id) {
+            deleteVertex: function(id) {
                 var nodes = this.nodes();
                 var vertex = this.getVertex(id);
                 if (vertex) {
@@ -13996,17 +13999,17 @@ var nx = {
                     }
                 }
             },
-            _deleteVertex: function (id) {
+            _deleteVertex: function(id) {
                 var vertex = this.vertices().getItem(id);
                 if (!vertex) {
                     return false;
                 }
 
-                nx.each(vertex.edgeSets(), function (edgeSet) {
+                nx.each(vertex.edgeSets(), function(edgeSet) {
                     this.deleteEdgeSet(edgeSet.linkKey());
                 }, this);
 
-                nx.each(vertex.edgeSetCollections(), function (esc) {
+                nx.each(vertex.edgeSetCollections(), function(esc) {
                     this.deleteEdgeSetCollection(esc.linkKey());
                 }, this);
 
@@ -14023,25 +14026,25 @@ var nx = {
 
                 vertex.dispose();
             },
-            eachVertex: function (callback, context) {
-                this.vertices().each(function (item, id) {
+            eachVertex: function(callback, context) {
+                this.vertices().each(function(item, id) {
                     callback.call(context || this, item.value(), id);
                 });
             },
-            getVertex: function (id) {
+            getVertex: function(id) {
                 return this.vertices().getItem(id);
             },
-            _nodesCollectionProcessor: function (sender, args) {
+            _nodesCollectionProcessor: function(sender, args) {
                 var items = args.items;
                 var action = args.action;
                 var identityKey = this.identityKey();
                 if (action == 'add') {
-                    nx.each(items, function (data) {
+                    nx.each(items, function(data) {
                         var vertex = this._addVertex(data);
                         this.generateVertex(vertex);
                     }, this);
                 } else if (action == 'remove') {
-                    nx.each(items, function (data) {
+                    nx.each(items, function(data) {
                         var id = nx.path(data, identityKey);
                         this._deleteVertex(id);
                     }, this);
@@ -14053,17 +14056,16 @@ var nx = {
     });
 
 
-})(nx, nx.global);
-(function (nx, global) {
+})(nx, nx.global);(function(nx, global) {
 
     nx.define('nx.data.ObservableGraph.VertexSets', nx.data.ObservableObject, {
         events: ['addVertexSet', 'removeVertexSet', 'updateVertexSet', 'updateVertexSetCoordinate'],
         properties: {
             nodeSet: {
-                get: function () {
+                get: function() {
                     return this._nodeSet || [];
                 },
-                set: function (value) {
+                set: function(value) {
 
                     if (this._nodeSet && nx.is(this._nodeSet, nx.data.ObservableCollection)) {
                         this._nodeSet.off('change', this._nodeSetCollectionProcessor, this);
@@ -14073,7 +14075,7 @@ var nx = {
 
                     if (nx.is(value, nx.data.ObservableCollection)) {
                         value.on('change', this._nodeSetCollectionProcessor, this);
-                        value.each(function (value) {
+                        value.each(function(value) {
                             this._addVertexSet(value);
                         }, this);
                         this._nodeSet = value;
@@ -14088,13 +14090,13 @@ var nx = {
                 }
             },
             vertexSets: {
-                value: function () {
+                value: function() {
                     var vertexSets = new nx.data.ObservableDictionary();
-                    vertexSets.on('change', function (sender, args) {
+                    vertexSets.on('change', function(sender, args) {
                         var action = args.action;
                         var items = args.items;
                         if (action == 'clear') {
-                            nx.each(items, function (item) {
+                            nx.each(items, function(item) {
                                 this.removeVertexSet(item.key());
                             }, this);
                         }
@@ -14103,9 +14105,9 @@ var nx = {
                 }
             },
             visibleVertexSets: {
-                get: function () {
+                get: function() {
                     var vertexSets = {};
-                    this.eachVertexSet(function (vertexSet, id) {
+                    this.eachVertexSet(function(vertexSet, id) {
                         if (vertexSet.visible()) {
                             vertexSets[id] = vertexSet;
                         }
@@ -14122,7 +14124,7 @@ var nx = {
              * @param {Object} [config] Config object
              * @returns {nx.data.VertexSet}
              */
-            addVertexSet: function (data, config) {
+            addVertexSet: function(data, config) {
 
 
                 var vertexSet;
@@ -14164,11 +14166,11 @@ var nx = {
 
                 return vertexSet;
             },
-            _addVertexSet: function (data) {
+            _addVertexSet: function(data) {
                 var identityKey = this.identityKey();
                 var vertexSets = this.vertexSets();
                 //
-                if (typeof (data) == 'string' || typeof (data) == 'number') {
+                if (typeof(data) == 'string' || typeof(data) == 'number') {
                     data = {
                         data: data
                     };
@@ -14184,9 +14186,12 @@ var nx = {
 
 
                 var vertexPositionGetter = this.vertexPositionGetter();
-                var vertexPositionSetter = this.vertexPositionSetter();
-                if (vertexPositionGetter && vertexPositionSetter) {
+                if (vertexPositionGetter) {
                     vertexSet.positionGetter(vertexPositionGetter);
+                }
+
+                var vertexPositionSetter = this.vertexPositionSetter();
+                if (vertexPositionSetter) {
                     vertexSet.positionSetter(vertexPositionSetter);
                 }
 
@@ -14201,7 +14206,7 @@ var nx = {
                 //delegate synchronize
                 if (nx.is(data, nx.data.ObservableObject)) {
                     var fn = data.set;
-                    data.set = function (key, value) {
+                    data.set = function(key, value) {
                         fn.call(data, key, value);
                         //
                         if (vertexSet.__properties__.indexOf(key) == -1) {
@@ -14215,23 +14220,23 @@ var nx = {
                 }
 
 
-                vertexSet.position(vertexSet.positionGetter().call(vertexSet));
+                vertexSet.position(vertexSet.positionGetter().call(vertexSet, vertexSet));
 
                 this.vertexSets().setItem(id, vertexSet);
 
                 return vertexSet;
             },
-            initVertexSet: function (vertexSet) {
+            initVertexSet: function(vertexSet) {
                 vertexSet.initNodes();
             },
-            generateVertexSet: function (vertexSet) {
+            generateVertexSet: function(vertexSet) {
                 if (vertexSet.visible() && !vertexSet.generated()) {
                     vertexSet.generated(true);
                     vertexSet.on('updateCoordinate', this._updateVertexSetCoordinateFN, this);
                     this.fire('addVertexSet', vertexSet);
                 }
             },
-            _updateVertexSetCoordinateFN: function (vertexSet, args) {
+            _updateVertexSetCoordinateFN: function(vertexSet, args) {
                 /**
                  * @event updateVertexSetCoordinate
                  * @param sender {Object}  Trigger instance
@@ -14239,7 +14244,7 @@ var nx = {
                  */
                 this.fire('updateVertexSetCoordinate', vertexSet);
             },
-            updateVertexSet: function (vertexSet) {
+            updateVertexSet: function(vertexSet) {
                 if (vertexSet.generated()) {
                     vertexSet.updated(false);
                     /**
@@ -14257,7 +14262,7 @@ var nx = {
              * @param {String} id
              * @returns {Boolean}
              */
-            removeVertexSet: function (id) {
+            removeVertexSet: function(id) {
 
                 var vertexSet = this.vertexSets().getItem(id);
                 if (!vertexSet) {
@@ -14267,11 +14272,11 @@ var nx = {
 
                 vertexSet.activated(true);
 
-                nx.each(vertexSet.edgeSets(), function (edgeSet, linkKey) {
+                nx.each(vertexSet.edgeSets(), function(edgeSet, linkKey) {
                     this.removeEdgeSet(linkKey);
                 }, this);
 
-                nx.each(vertexSet.edgeSetCollections(), function (esc, linkKey) {
+                nx.each(vertexSet.edgeSetCollections(), function(esc, linkKey) {
                     this.deleteEdgeSetCollection(linkKey);
                 }, this);
 
@@ -14280,7 +14285,7 @@ var nx = {
                 this.fire('removeVertexSet', vertexSet);
 
             },
-            deleteVertexSet: function (id) {
+            deleteVertexSet: function(id) {
                 var nodeSet = this.nodeSet();
                 var vertexSet = this.getVertexSet(id);
                 if (vertexSet) {
@@ -14296,7 +14301,7 @@ var nx = {
                     }
                 }
             },
-            _deleteVertexSet: function (id) {
+            _deleteVertexSet: function(id) {
                 var vertexSet = this.vertexSets().getItem(id);
                 if (!vertexSet) {
                     return false;
@@ -14312,14 +14317,14 @@ var nx = {
 
                 }
 
-                nx.each(vertexSet.vertices(), function (vertex) {
+                nx.each(vertexSet.vertices(), function(vertex) {
                     if (parentVertexSet) {
                         parentVertexSet.addVertex(vertex);
                     } else {
                         vertex.parentVertexSet(null);
                     }
                 });
-                nx.each(vertexSet.vertexSet(), function (vertexSet) {
+                nx.each(vertexSet.vertexSet(), function(vertexSet) {
                     if (parentVertexSet) {
                         parentVertexSet.addVertex(vertexSet);
                     } else {
@@ -14335,26 +14340,26 @@ var nx = {
                 vertexSet.dispose();
             },
 
-            eachVertexSet: function (callback, context) {
-                this.vertexSets().each(function (item, id) {
+            eachVertexSet: function(callback, context) {
+                this.vertexSets().each(function(item, id) {
                     callback.call(context || this, item.value(), id);
                 });
             },
-            getVertexSet: function (id) {
+            getVertexSet: function(id) {
                 return this.vertexSets().getItem(id);
             },
-            _nodeSetCollectionProcessor: function (sender, args) {
+            _nodeSetCollectionProcessor: function(sender, args) {
                 var items = args.items;
                 var action = args.action;
                 var identityKey = this.identityKey();
                 if (action == 'add') {
-                    nx.each(items, function (data) {
+                    nx.each(items, function(data) {
                         var vertexSet = this._addVertexSet(data);
                         this.generateVertexSet(vertexSet);
 
                     }, this);
                 } else if (action == 'remove') {
-                    nx.each(items, function (data) {
+                    nx.each(items, function(data) {
                         var id = nx.path(data, identityKey);
                         this._deleteVertexSet(id);
                     }, this);
@@ -14366,8 +14371,7 @@ var nx = {
     });
 
 
-})(nx, nx.global);
-(function (nx, global) {
+})(nx, nx.global);(function (nx, global) {
 
     nx.define('nx.data.ObservableGraph.Edges', nx.data.ObservableObject, {
         events: ['addEdge', 'removeEdge', 'deleteEdge', 'updateEdge', 'updateEdgeCoordinate'],
@@ -17183,6 +17187,15 @@ var nx = {
                     }
                 }
             },
+            /**
+             * Expand nodes from a source position, If nodes number more than 150, will ignore animation.
+             * @method expandNodes
+             * @param nodes {Array} ids of nodes to expand
+             * @param sourcePosition
+             * @param callback
+             * @param context
+             * @param isAnimate
+             */
             expandNodes: function(nodes, sourcePosition, callback, context, isAnimate) {
 
                 var nodesLength = nx.is(nodes, Array) ? nodes.length : nx.util.keys(nodes).length;
@@ -17228,6 +17241,15 @@ var nx = {
                     ani.start();
                 }
             },
+            /**
+             * To collapse nodes to a target position. If nodes number more than 150, will ignore animation.
+             * @method collapseNodes
+             * @param nodes nodes {Array} nodes to collape
+             * @param targetPosition
+             * @param callback
+             * @param context
+             * @param isAnimate
+             */
             collapseNodes: function(nodes, targetPosition, callback, context, isAnimate) {
                 var nodesLength = nx.is(nodes, Array) ? nodes.length : nx.util.keys(nodes).length;
                 callback = callback || function() {};
@@ -17277,6 +17299,10 @@ var nx = {
                     ani.start();
                 }
             },
+            /**
+             * Expand all nodeSets
+             * @method expandAll
+             */
             expandAll: function() {
                 var nodeSetLayer = this.getLayer('nodeSet');
                 //console.time('expandAll');
@@ -17313,6 +17339,10 @@ var nx = {
                     }.bind(this));
                 }.bind(this), 100);
             },
+            /**
+             * Collpase all nodeSets
+             * @method collapseAll
+             */
             collapseAll: function() {
                 var graph = this.graph();
                 var rootVertexSets = {};
@@ -17347,14 +17377,6 @@ var nx = {
                         this.fire('collapseAll');
                     }, this);
                 }.bind(this), 100);
-
-
-
-
-
-
-
-
             }
         }
     });

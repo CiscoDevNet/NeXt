@@ -133,9 +133,9 @@ FILES_SRC = \
 
 
 
-all: clean folder resource contact yuidoc uglify test copy
+all: clean folder resource contact yuidoc uglify test copy zip
 
-dev: clean folder resource contact copy
+dev: clean folder resource contact copy zip
 
 clean:
 	@rm -rf target/*
@@ -187,9 +187,13 @@ test:
 
 	@printf "Topology: test ... "
 	@node src/bin/phantom-autotest.js src/test/topology/index.html -s target/test/next-topology-test-report.png -r target/test/next-topology-test-report.xml
+zip:
+	@zip -r target/next.zip  ./target/
 
 copy:
 	@rm -rf src/dist/*
 	@cp -R target/fonts src/dist/fonts
 	@cp -R target/css src/dist/css
 	@cp -R target/js src/dist/js
+
+

@@ -1,13 +1,13 @@
-(function (nx, global) {
+(function(nx, global) {
 
     nx.define('nx.data.ObservableGraph.VertexSets', nx.data.ObservableObject, {
         events: ['addVertexSet', 'removeVertexSet', 'updateVertexSet', 'updateVertexSetCoordinate'],
         properties: {
             nodeSet: {
-                get: function () {
+                get: function() {
                     return this._nodeSet || [];
                 },
-                set: function (value) {
+                set: function(value) {
 
                     if (this._nodeSet && nx.is(this._nodeSet, nx.data.ObservableCollection)) {
                         this._nodeSet.off('change', this._nodeSetCollectionProcessor, this);
@@ -17,7 +17,7 @@
 
                     if (nx.is(value, nx.data.ObservableCollection)) {
                         value.on('change', this._nodeSetCollectionProcessor, this);
-                        value.each(function (value) {
+                        value.each(function(value) {
                             this._addVertexSet(value);
                         }, this);
                         this._nodeSet = value;
@@ -32,13 +32,13 @@
                 }
             },
             vertexSets: {
-                value: function () {
+                value: function() {
                     var vertexSets = new nx.data.ObservableDictionary();
-                    vertexSets.on('change', function (sender, args) {
+                    vertexSets.on('change', function(sender, args) {
                         var action = args.action;
                         var items = args.items;
                         if (action == 'clear') {
-                            nx.each(items, function (item) {
+                            nx.each(items, function(item) {
                                 this.removeVertexSet(item.key());
                             }, this);
                         }
@@ -47,9 +47,9 @@
                 }
             },
             visibleVertexSets: {
-                get: function () {
+                get: function() {
                     var vertexSets = {};
-                    this.eachVertexSet(function (vertexSet, id) {
+                    this.eachVertexSet(function(vertexSet, id) {
                         if (vertexSet.visible()) {
                             vertexSets[id] = vertexSet;
                         }
@@ -66,7 +66,7 @@
              * @param {Object} [config] Config object
              * @returns {nx.data.VertexSet}
              */
-            addVertexSet: function (data, config) {
+            addVertexSet: function(data, config) {
 
 
                 var vertexSet;
@@ -108,11 +108,11 @@
 
                 return vertexSet;
             },
-            _addVertexSet: function (data) {
+            _addVertexSet: function(data) {
                 var identityKey = this.identityKey();
                 var vertexSets = this.vertexSets();
                 //
-                if (typeof (data) == 'string' || typeof (data) == 'number') {
+                if (typeof(data) == 'string' || typeof(data) == 'number') {
                     data = {
                         data: data
                     };
@@ -128,9 +128,12 @@
 
 
                 var vertexPositionGetter = this.vertexPositionGetter();
-                var vertexPositionSetter = this.vertexPositionSetter();
-                if (vertexPositionGetter && vertexPositionSetter) {
+                if (vertexPositionGetter) {
                     vertexSet.positionGetter(vertexPositionGetter);
+                }
+
+                var vertexPositionSetter = this.vertexPositionSetter();
+                if (vertexPositionSetter) {
                     vertexSet.positionSetter(vertexPositionSetter);
                 }
 
@@ -145,7 +148,7 @@
                 //delegate synchronize
                 if (nx.is(data, nx.data.ObservableObject)) {
                     var fn = data.set;
-                    data.set = function (key, value) {
+                    data.set = function(key, value) {
                         fn.call(data, key, value);
                         //
                         if (vertexSet.__properties__.indexOf(key) == -1) {
@@ -159,23 +162,23 @@
                 }
 
 
-                vertexSet.position(vertexSet.positionGetter().call(vertexSet));
+                vertexSet.position(vertexSet.positionGetter().call(vertexSet, vertexSet));
 
                 this.vertexSets().setItem(id, vertexSet);
 
                 return vertexSet;
             },
-            initVertexSet: function (vertexSet) {
+            initVertexSet: function(vertexSet) {
                 vertexSet.initNodes();
             },
-            generateVertexSet: function (vertexSet) {
+            generateVertexSet: function(vertexSet) {
                 if (vertexSet.visible() && !vertexSet.generated()) {
                     vertexSet.generated(true);
                     vertexSet.on('updateCoordinate', this._updateVertexSetCoordinateFN, this);
                     this.fire('addVertexSet', vertexSet);
                 }
             },
-            _updateVertexSetCoordinateFN: function (vertexSet, args) {
+            _updateVertexSetCoordinateFN: function(vertexSet, args) {
                 /**
                  * @event updateVertexSetCoordinate
                  * @param sender {Object}  Trigger instance
@@ -183,7 +186,7 @@
                  */
                 this.fire('updateVertexSetCoordinate', vertexSet);
             },
-            updateVertexSet: function (vertexSet) {
+            updateVertexSet: function(vertexSet) {
                 if (vertexSet.generated()) {
                     vertexSet.updated(false);
                     /**
@@ -201,7 +204,7 @@
              * @param {String} id
              * @returns {Boolean}
              */
-            removeVertexSet: function (id) {
+            removeVertexSet: function(id) {
 
                 var vertexSet = this.vertexSets().getItem(id);
                 if (!vertexSet) {
@@ -211,11 +214,11 @@
 
                 vertexSet.activated(true);
 
-                nx.each(vertexSet.edgeSets(), function (edgeSet, linkKey) {
+                nx.each(vertexSet.edgeSets(), function(edgeSet, linkKey) {
                     this.removeEdgeSet(linkKey);
                 }, this);
 
-                nx.each(vertexSet.edgeSetCollections(), function (esc, linkKey) {
+                nx.each(vertexSet.edgeSetCollections(), function(esc, linkKey) {
                     this.deleteEdgeSetCollection(linkKey);
                 }, this);
 
@@ -224,7 +227,7 @@
                 this.fire('removeVertexSet', vertexSet);
 
             },
-            deleteVertexSet: function (id) {
+            deleteVertexSet: function(id) {
                 var nodeSet = this.nodeSet();
                 var vertexSet = this.getVertexSet(id);
                 if (vertexSet) {
@@ -240,7 +243,7 @@
                     }
                 }
             },
-            _deleteVertexSet: function (id) {
+            _deleteVertexSet: function(id) {
                 var vertexSet = this.vertexSets().getItem(id);
                 if (!vertexSet) {
                     return false;
@@ -256,14 +259,14 @@
 
                 }
 
-                nx.each(vertexSet.vertices(), function (vertex) {
+                nx.each(vertexSet.vertices(), function(vertex) {
                     if (parentVertexSet) {
                         parentVertexSet.addVertex(vertex);
                     } else {
                         vertex.parentVertexSet(null);
                     }
                 });
-                nx.each(vertexSet.vertexSet(), function (vertexSet) {
+                nx.each(vertexSet.vertexSet(), function(vertexSet) {
                     if (parentVertexSet) {
                         parentVertexSet.addVertex(vertexSet);
                     } else {
@@ -279,26 +282,26 @@
                 vertexSet.dispose();
             },
 
-            eachVertexSet: function (callback, context) {
-                this.vertexSets().each(function (item, id) {
+            eachVertexSet: function(callback, context) {
+                this.vertexSets().each(function(item, id) {
                     callback.call(context || this, item.value(), id);
                 });
             },
-            getVertexSet: function (id) {
+            getVertexSet: function(id) {
                 return this.vertexSets().getItem(id);
             },
-            _nodeSetCollectionProcessor: function (sender, args) {
+            _nodeSetCollectionProcessor: function(sender, args) {
                 var items = args.items;
                 var action = args.action;
                 var identityKey = this.identityKey();
                 if (action == 'add') {
-                    nx.each(items, function (data) {
+                    nx.each(items, function(data) {
                         var vertexSet = this._addVertexSet(data);
                         this.generateVertexSet(vertexSet);
 
                     }, this);
                 } else if (action == 'remove') {
-                    nx.each(items, function (data) {
+                    nx.each(items, function(data) {
                         var id = nx.path(data, identityKey);
                         this._deleteVertexSet(id);
                     }, this);
