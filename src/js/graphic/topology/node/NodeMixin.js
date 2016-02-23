@@ -900,7 +900,7 @@
                 var rootVertexSets = {};
                 graph.eachVertexSet(function(vertexSet, id) {
                     if (!vertexSet.rootVertexSet()) {
-                        rootVertexSets[id] = vertexSet
+                        rootVertexSets[id] = vertexSet;
                     }
                 });
 

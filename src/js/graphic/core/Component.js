@@ -148,8 +148,8 @@
              */
             setTransform: function (translateX, translateY, scale, duration) {
 
-                var tx = parseFloat(translateX != null ? translateX : this._translateX || 0);
-                var ty = parseFloat(translateY != null ? translateY : this._translateY || 0);
+                var tx = parseFloat(translateX !== null ? translateX : this._translateX || 0);
+                var ty = parseFloat(translateY !== null ? translateY : this._translateY || 0);
                 var scl = parseFloat(scale != null ? scale : this._scale || 1);
 
                 this.setStyle('transform', ' matrix(' + scl + ',' + 0 + ',' + 0 + ',' + scl + ',' + tx + ', ' + ty + ')', duration);

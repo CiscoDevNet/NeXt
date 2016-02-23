@@ -1,0 +1,151 @@
+{
+  "scripts": [
+    "src/js/core/base.js",
+    "src/js/core/class.js",
+    "src/js/core/keyword.js",
+    "src/js/core/Iterable.js",
+    "src/js/core/Observable.js",
+    "src/js/core/data/Counter.js",
+    "src/js/core/data/Collection.js",
+    "src/js/core/data/Dictionary.js",
+    "src/js/core/data/ObservableObject.js",
+    "src/js/core/data/ObservableCollection.js",
+    "src/js/core/data/ObservableDictionary.js",
+    "src/js/core/data/Query.js",
+    "src/js/core/data/SortedMap.js",
+    "src/js/web/Env.js",
+    "src/js/web/Util.js",
+    "src/js/web/dom/Node.js",
+    "src/js/web/dom/Text.js",
+    "src/js/web/dom/Element.js",
+    "src/js/web/dom/Fragment.js",
+    "src/js/web/dom/Document.js",
+    "src/js/web/ui/AbstractComponent.js",
+    "src/js/web/ui/Component.js",
+    "src/js/web/ui/Application.js",
+
+    "src/js/graphic/util/util.js",
+    "src/js/graphic/util/query.js",
+    "src/js/graphic/util/Animation.js",
+
+
+    "src/js/graphic/ui/ZIndexManager.js",
+    "src/js/graphic/ui/PopupContainer.js",
+    "src/js/graphic/ui/Popup.js",
+    "src/js/graphic/ui/Popover.js",
+
+
+    "src/js/graphic/core/DragManager.js",
+    "src/js/graphic/core/Component.js",
+
+
+    "src/js/graphic/svg/Group.js",
+    "src/js/graphic/svg/ICON.js",
+    "src/js/graphic/svg/Icons.js",
+    "src/js/graphic/svg/Circle.js",
+    "src/js/graphic/svg/Image.js",
+    "src/js/graphic/svg/Line.js",
+    "src/js/graphic/svg/Path.js",
+    "src/js/graphic/svg/Polygon.js",
+    "src/js/graphic/svg/Rect.js",
+    "src/js/graphic/svg/Stage.js",
+    "src/js/graphic/svg/Text.js",
+    "src/js/graphic/svg/Triangle.js",
+    "src/js/graphic/svg/BezierCurves.js",
+
+    "src/js/graphic/geometry/MatrixSupport.js",
+    "src/js/graphic/geometry/Matrix.js",
+    "src/js/graphic/geometry/Math.js",
+    "src/js/graphic/geometry/BezierCurve.js",
+    "src/js/graphic/geometry/Vector.js",
+    "src/js/graphic/geometry/Vector.js",
+    "src/js/graphic/geometry/Line.js",
+
+    "src/js/graphic/data/QuadTree.js",
+    "src/js/graphic/data/NeXtForce.js",
+    "src/js/graphic/data/Force.js",
+    "src/js/graphic/data/Convex.js",
+
+
+    "src/js/graphic/data/Vertex.js",
+    "src/js/graphic/data/Edge.js",
+    "src/js/graphic/data/VertexSet.js",
+    "src/js/graphic/data/EdgeSet.js",
+    "src/js/graphic/data/EdgeSetCollection.js",
+
+    "src/js/graphic/data/Vertices.js",
+    "src/js/graphic/data/VertexSets.js",
+    "src/js/graphic/data/Edges.js",
+    "src/js/graphic/data/EdgeSets.js",
+    "src/js/graphic/data/EdgeSetCollections.js",
+
+
+    "src/js/graphic/data/processor/NeXtForce.js",
+    "src/js/graphic/data/processor/Force.js",
+    "src/js/graphic/data/processor/Quick.js",
+    "src/js/graphic/data/DataProcessor.js",
+    "src/js/graphic/data/ObservableGraph.js",
+    "src/js/graphic/data/UniqObservableCollection.js",
+
+    "src/js/graphic/topology/core/Config.js",
+    "src/js/graphic/topology/core/Graph.js",
+    "src/js/graphic/topology/core/Event.js",
+    "src/js/graphic/topology/node/NodeMixin.js",
+    "src/js/graphic/topology/link/LinkMixin.js",
+    "src/js/graphic/topology/layer/LayerMixin.js",
+    "src/js/graphic/topology/core/StageMixin.js",
+    "src/js/graphic/topology/tooltip/TooltipMixin.js",
+    "src/js/graphic/topology/scene/SceneMixin.js",
+    "src/js/graphic/topology/layout/LayoutMixin.js",
+    "src/js/graphic/topology/core/Categories.js",
+    "src/js/graphic/topology/core/Topology.js",
+
+    "src/js/graphic/topology/layer/Layer.js",
+    "src/js/graphic/topology/layer/TripleLayer.js",
+
+    "src/js/graphic/topology/node/NodeWatcher.js",
+    "src/js/graphic/topology/node/AbstractNode.js",
+    "src/js/graphic/topology/node/Node.js",
+    "src/js/graphic/topology/node/NodesLayer.js",
+    "src/js/graphic/topology/node/NodeSet.js",
+    "src/js/graphic/topology/node/NodeSetLayer.js",
+
+    "src/js/graphic/topology/link/AbstractLink.js",
+    "src/js/graphic/topology/link/Link.js",
+    "src/js/graphic/topology/link/LinksLayer.js",
+    "src/js/graphic/topology/link/LinkSet.js",
+    "src/js/graphic/topology/link/LinkSetLayer.js",
+
+
+    "src/js/graphic/topology/layout/HierarchicalLayout.js",
+    "src/js/graphic/topology/layout/USMapLayout.js",
+
+    "src/js/graphic/topology/tooltip/TooltipPolicy.js",
+    "src/js/graphic/topology/tooltip/TopologyTooltip.js",
+    "src/js/graphic/topology/tooltip/NodeTooltip.js",
+    "src/js/graphic/topology/tooltip/LinkTooltip.js",
+    "src/js/graphic/topology/tooltip/LinkSetTooltip.js",
+    "src/js/graphic/topology/tooltip/TooltipManager.js",
+
+    "src/js/graphic/topology/scene/Scene.js",
+    "src/js/graphic/topology/scene/DefaultScene.js",
+    "src/js/graphic/topology/scene/SelectionScene.js",
+    "src/js/graphic/topology/scene/SelectionNodeScene.js",
+    "src/js/graphic/topology/scene/ZoomBySelection.js",
+
+    "src/js/graphic/topology/group/GroupsLayer.js",
+    "src/js/graphic/topology/group/GroupItem.js",
+    "src/js/graphic/topology/group/RectGroup.js",
+    "src/js/graphic/topology/group/CircleGroup.js",
+    "src/js/graphic/topology/group/PolygonGroup.js",
+    "src/js/graphic/topology/group/NodeSetPolygonGroup.js",
+
+
+    "src/js/graphic/topology/path/Path.js",
+    "src/js/graphic/topology/path/BasePath.js",
+    "src/js/graphic/topology/path/PathLayer.js",
+
+    "src/js/graphic/topology/plugin/Nav.js"
+
+  ]
+}

@@ -71,4 +71,6 @@ phantom.create(function(ph) {
             }
         });
     });
+}, {
+    dnodeOpts: {weak: false}
 });
