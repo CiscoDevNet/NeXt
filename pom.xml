@@ -1,56 +1,87 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
 			     http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <parent>
-    <groupId>org.opendaylight.odlparent</groupId>
-    <artifactId>odlparent</artifactId>
-    <version>1.7.0-SNAPSHOT</version>
-    <relativePath></relativePath>
-  </parent>
+    <!--<parent>-->
+    <!--<groupId>org.opendaylight.odlparent</groupId>-->
+    <!--<artifactId>odlparent</artifactId>-->
+    <!--<version>1.7.0-SNAPSHOT</version>-->
+    <!--<relativePath></relativePath>-->
+    <!--</parent>-->
 
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.opendaylight.next</groupId>
-  <artifactId>next</artifactId>
-  <version>0.9.0-SNAPSHOT</version>
-  
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>com.github.eirslett</groupId>
-        <artifactId>frontend-maven-plugin</artifactId>
-        <version>0.0.24</version>
-        <executions>
-          <execution>
-	    <id>npm</id>
-	    <goals>
-              <goal>install-node-and-npm</goal>
-              <goal>npm</goal>
-	    </goals>
-	    <phase>generate-resources</phase>
-          </execution>
-          <execution>
-	    <id>grunt</id>
-	    <goals>
-              <goal>grunt</goal>
-	    </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <nodeVersion>v0.12.7</nodeVersion>
-          <npmVersion>3.1.3</npmVersion>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-  
-  <scm>
-    <connection>scm:git:ssh://git.opendaylight.org:29418/next.git</connection>
-    <developerConnection>scm:git:ssh://git.opendaylight.org:29418/next.git</developerConnection>
-    <tag>HEAD</tag>
-    <url>https://wiki.opendaylight.org/view/NeXt:Main</url>  
-  </scm>
-  
+    <groupId>org.opendaylight.next</groupId>
+    <artifactId>next</artifactId>
+    <version>0.9.0-SNAPSHOT</version>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>ant-contrib</groupId>
+                        <artifactId>ant-contrib</artifactId>
+                        <version>1.0b3</version>
+                        <exclusions>
+                            <exclusion>
+                                <groupId>ant</groupId>
+                                <artifactId>ant</artifactId>
+                            </exclusion>
+                        </exclusions>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.apache.ant</groupId>
+                        <artifactId>ant-nodeps</artifactId>
+                        <version>1.8.1</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>make</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="make">
+                                <taskdef resource="net/sf/antcontrib/antcontrib.properties"
+                                         classpathref="maven.plugin.classpath"/>
+                                <exec executable="make" failonerror="true" dir="${project.basedir}"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>0.0.28</version>
+                <executions>
+                    <execution>
+                        <id>npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                            <goal>npm</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <nodeVersion>v0.12.10</nodeVersion>
+                    <npmVersion>3.7.1</npmVersion>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+    <scm>
+        <connection>scm:git:ssh://git.opendaylight.org:29418/next.git</connection>
+        <developerConnection>scm:git:ssh://git.opendaylight.org:29418/next.git</developerConnection>
+        <tag>HEAD</tag>
+        <url>https://wiki.opendaylight.org/view/NeXt:Main</url>
+    </scm>
 </project>

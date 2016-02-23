@@ -309,7 +309,7 @@
 
 
                 var direction = this.direction();
-                if (direction == null || direction == "auto") {
+                if (direction === null || direction == "auto") {
                     direction = this._hitTest();
                 }
                 if (!direction) {
