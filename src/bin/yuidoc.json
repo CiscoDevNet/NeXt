@@ -1,7 +1,7 @@
 {
     "name": "Next graph",
-    "description": "Next graph API docs",
-    "version": "0.1",
+    "description": "Next API docs",
+    "version": "0.9",
     "url":"index.html",
     "options": {
         "linkNatives": "true",
