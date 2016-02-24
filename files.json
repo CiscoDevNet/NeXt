@@ -39,6 +39,7 @@
     "src/js/graphic/core/Component.js",
 
 
+    "src/js/graphic/svg/Arc.js",
     "src/js/graphic/svg/Group.js",
     "src/js/graphic/svg/ICON.js",
     "src/js/graphic/svg/Icons.js",
@@ -83,6 +84,7 @@
     "src/js/graphic/data/processor/NeXtForce.js",
     "src/js/graphic/data/processor/Force.js",
     "src/js/graphic/data/processor/Quick.js",
+    "src/js/graphic/data/processor/Circle.js",
     "src/js/graphic/data/DataProcessor.js",
     "src/js/graphic/data/ObservableGraph.js",
     "src/js/graphic/data/UniqObservableCollection.js",
@@ -119,6 +121,8 @@
 
     "src/js/graphic/topology/layout/HierarchicalLayout.js",
     "src/js/graphic/topology/layout/USMapLayout.js",
+    "src/js/graphic/topology/layout/NeXtForceLayout.js",
+    "src/js/graphic/topology/layout/EnterpriseNetworkLayout.js",
 
     "src/js/graphic/topology/tooltip/TooltipPolicy.js",
     "src/js/graphic/topology/tooltip/TopologyTooltip.js",
@@ -143,6 +147,7 @@
 
     "src/js/graphic/topology/path/Path.js",
     "src/js/graphic/topology/path/BasePath.js",
+    "src/js/graphic/topology/path/NodeSetPath.js",
     "src/js/graphic/topology/path/PathLayer.js",
 
     "src/js/graphic/topology/plugin/Nav.js"

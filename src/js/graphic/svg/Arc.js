@@ -49,7 +49,7 @@
                     return {
                         x: 0,
                         y: 0
-                    }
+                    };
                 }
             },
             outerStartPoint: {
@@ -57,7 +57,7 @@
                     return {
                         x: 0,
                         y: 0
-                    }
+                    };
                 }
             },
             innerEndPoint: {
@@ -65,7 +65,7 @@
                     return {
                         x: 0,
                         y: 0
-                    }
+                    };
                 }
             },
             outerEndPoint: {
@@ -73,7 +73,7 @@
                     return {
                         x: 0,
                         y: 0
-                    }
+                    };
                 }
             },
             innerCenterPoint: {
@@ -81,7 +81,7 @@
                     return {
                         x: 0,
                         y: 0
-                    }
+                    };
                 }
             },
             outerCenterPoint: {
@@ -89,7 +89,7 @@
                     return {
                         x: 0,
                         y: 0
-                    }
+                    };
                 }
             },
             thickness: {
@@ -100,7 +100,7 @@
                     return {
                         x: 0,
                         y: 0
-                    }
+                    };
                 }
             }
         },

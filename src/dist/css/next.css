@@ -275,7 +275,7 @@
 .n-topology.n-topology-blue {
   position: relative;
   overflow: hidden;
-  background: #fff;
+  background: #ffffff;
   -webkit-transition: background 0.6s;
   /* For Safari 3.1 to 6.0 */
   transition: background 0.6s;
@@ -327,7 +327,7 @@
   stroke: #0386d2;
 }
 .n-topology.n-topology-blue defs [fill*='#FFFFFF'] {
-  fill: #fff;
+  fill: #ffffff;
 }
 .n-topology.n-topology-blue .n-svg {
   border: none;
@@ -361,7 +361,7 @@
   cursor: pointer;
 }
 .n-topology.n-topology-blue .iconBG {
-  fill: #fff;
+  fill: #ffffff;
 }
 .n-topology.n-topology-blue .iconBGActive {
   fill: #0386d2;
@@ -460,7 +460,7 @@
   pointer-events: none;
 }
 .n-topology.n-topology-blue .nodeset .dot {
-  fill: #fff;
+  fill: #ffffff;
   stroke: #0386d2;
   stroke-width: 1;
 }
@@ -486,16 +486,16 @@
   stroke: #ccc;
 }
 .n-topology.n-topology-blue .nodeset .iconBG {
-  fill: #fff;
+  fill: #ffffff;
 }
 .n-topology.n-topology-blue .nodeset .iconBGActive {
-  fill: #fff;
+  fill: #ffffff;
 }
 .n-topology.n-topology-blue .nodeset .iconBGActive ~ .iconShape {
   display: block !important;
 }
 .n-topology.n-topology-blue .nodeset .indicator .iconBG {
-  fill: #fff;
+  fill: #ffffff;
 }
 .n-topology.n-topology-blue .nodeset .indicator .iconBG:hover {
   fill: #0386d2;
@@ -557,7 +557,7 @@
 }
 .n-topology.n-topology-blue .link-set-text {
   font-family: "Cisco Sans Reg";
-  fill: #fff;
+  fill: #ffffff;
   text-anchor: middle;
   dominant-baseline: central;
   font-size: 12px;
@@ -695,13 +695,13 @@
   background: #0386d2 !important;
 }
 .n-topology.n-topology-blue .n-topology-nav-mode-selected span {
-  color: #fff;
+  color: #ffffff;
 }
 .n-topology.n-topology-blue .n-topology-nav-mode-selected:hover {
   background: #0386d2 !important;
 }
 .n-topology.n-topology-blue .n-topology-nav-mode-selected:hover span {
-  color: #fff !important;
+  color: #ffffff !important;
 }
 .n-topology.n-topology-blue .n-topology-nav-zoom {
   position: relative;
@@ -966,7 +966,7 @@
 .n-topology.n-topology-dark {
   position: relative;
   overflow: hidden;
-  background: #000;
+  background: #000000;
   -webkit-transition: background 0.6s;
   /* For Safari 3.1 to 6.0 */
   transition: background 0.6s;
@@ -1018,7 +1018,7 @@
   stroke: #00a9ff;
 }
 .n-topology.n-topology-dark defs [fill*='#FFFFFF'] {
-  fill: #000;
+  fill: #000000;
 }
 .n-topology.n-topology-dark .n-svg {
   border: none;
@@ -1052,7 +1052,7 @@
   cursor: pointer;
 }
 .n-topology.n-topology-dark .iconBG {
-  fill: #000;
+  fill: #000000;
 }
 .n-topology.n-topology-dark .iconBGActive {
   fill: #00a9ff;
@@ -1151,7 +1151,7 @@
   pointer-events: none;
 }
 .n-topology.n-topology-dark .nodeset .dot {
-  fill: #000;
+  fill: #000000;
   stroke: #00a9ff;
   stroke-width: 1;
 }
@@ -1177,16 +1177,16 @@
   stroke: #ccc;
 }
 .n-topology.n-topology-dark .nodeset .iconBG {
-  fill: #000;
+  fill: #000000;
 }
 .n-topology.n-topology-dark .nodeset .iconBGActive {
-  fill: #000;
+  fill: #000000;
 }
 .n-topology.n-topology-dark .nodeset .iconBGActive ~ .iconShape {
   display: block !important;
 }
 .n-topology.n-topology-dark .nodeset .indicator .iconBG {
-  fill: #000;
+  fill: #000000;
 }
 .n-topology.n-topology-dark .nodeset .indicator .iconBG:hover {
   fill: #00a9ff;
@@ -1248,7 +1248,7 @@
 }
 .n-topology.n-topology-dark .link-set-text {
   font-family: "Cisco Sans Reg";
-  fill: #000;
+  fill: #000000;
   text-anchor: middle;
   dominant-baseline: central;
   font-size: 12px;
@@ -1386,13 +1386,13 @@
   background: #00a9ff !important;
 }
 .n-topology.n-topology-dark .n-topology-nav-mode-selected span {
-  color: #000;
+  color: #000000;
 }
 .n-topology.n-topology-dark .n-topology-nav-mode-selected:hover {
   background: #00a9ff !important;
 }
 .n-topology.n-topology-dark .n-topology-nav-mode-selected:hover span {
-  color: #000 !important;
+  color: #000000 !important;
 }
 .n-topology.n-topology-dark .n-topology-nav-zoom {
   position: relative;
@@ -1657,7 +1657,7 @@
 .n-topology.n-topology-green {
   position: relative;
   overflow: hidden;
-  background: #fff;
+  background: #ffffff;
   -webkit-transition: background 0.6s;
   /* For Safari 3.1 to 6.0 */
   transition: background 0.6s;
@@ -1709,7 +1709,7 @@
   stroke: #26999e;
 }
 .n-topology.n-topology-green defs [fill*='#FFFFFF'] {
-  fill: #fff;
+  fill: #ffffff;
 }
 .n-topology.n-topology-green .n-svg {
   border: none;
@@ -1743,7 +1743,7 @@
   cursor: pointer;
 }
 .n-topology.n-topology-green .iconBG {
-  fill: #fff;
+  fill: #ffffff;
 }
 .n-topology.n-topology-green .iconBGActive {
   fill: #26999e;
@@ -1842,7 +1842,7 @@
   pointer-events: none;
 }
 .n-topology.n-topology-green .nodeset .dot {
-  fill: #fff;
+  fill: #ffffff;
   stroke: #26999e;
   stroke-width: 1;
 }
@@ -1868,16 +1868,16 @@
   stroke: #ccc;
 }
 .n-topology.n-topology-green .nodeset .iconBG {
-  fill: #fff;
+  fill: #ffffff;
 }
 .n-topology.n-topology-green .nodeset .iconBGActive {
-  fill: #fff;
+  fill: #ffffff;
 }
 .n-topology.n-topology-green .nodeset .iconBGActive ~ .iconShape {
   display: block !important;
 }
 .n-topology.n-topology-green .nodeset .indicator .iconBG {
-  fill: #fff;
+  fill: #ffffff;
 }
 .n-topology.n-topology-green .nodeset .indicator .iconBG:hover {
   fill: #26999e;
@@ -1939,7 +1939,7 @@
 }
 .n-topology.n-topology-green .link-set-text {
   font-family: "Cisco Sans Reg";
-  fill: #fff;
+  fill: #ffffff;
   text-anchor: middle;
   dominant-baseline: central;
   font-size: 12px;
@@ -2077,13 +2077,13 @@
   background: #26999e !important;
 }
 .n-topology.n-topology-green .n-topology-nav-mode-selected span {
-  color: #fff;
+  color: #ffffff;
 }
 .n-topology.n-topology-green .n-topology-nav-mode-selected:hover {
   background: #26999e !important;
 }
 .n-topology.n-topology-green .n-topology-nav-mode-selected:hover span {
-  color: #fff !important;
+  color: #ffffff !important;
 }
 .n-topology.n-topology-green .n-topology-nav-zoom {
   position: relative;
@@ -2394,10 +2394,10 @@
   pointer-events: all;
 }
 .n-topology.n-topology-slate defs .bg {
-  fill: #fff;
+  fill: #ffffff;
 }
 .n-topology.n-topology-slate defs .stroke {
-  stroke: #fff;
+  stroke: #ffffff;
 }
 .n-topology.n-topology-slate defs [fill*='#FFFFFF'] {
   fill: #223343;
@@ -2412,7 +2412,7 @@
 }
 .n-topology.n-topology-slate .fontIcon {
   font-family: 'next-font';
-  fill: #fff;
+  fill: #ffffff;
   alignment-baseline: central;
   text-anchor: middle;
   speak: none;
@@ -2437,7 +2437,7 @@
   fill: #223343;
 }
 .n-topology.n-topology-slate .iconBGActive {
-  fill: #fff;
+  fill: #ffffff;
 }
 .n-topology.n-topology-slate .node:not(.node-selected) .selectedBG {
   display: none;
@@ -2450,11 +2450,11 @@
   pointer-events: none;
 }
 .n-topology.n-topology-slate .node .dot {
-  fill: #fff;
+  fill: #ffffff;
 }
 .n-topology.n-topology-slate .node text.node-label {
   font-family: "Cisco Sans Reg";
-  fill: #fff;
+  fill: #ffffff;
   pointer-events: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -2488,18 +2488,18 @@
 }
 .n-topology.n-topology-slate .link .link-label {
   font-family: "Cisco Sans Reg";
-  fill: #fff;
+  fill: #ffffff;
   font-size: 12px;
 }
 .n-topology.n-topology-slate .link .source-abel {
   font-family: "Cisco Sans Reg";
-  fill: #fff;
+  fill: #ffffff;
   opacity: 0.8;
   font-size: 12px;
 }
 .n-topology.n-topology-slate .link .target-label {
   font-family: "Cisco Sans Reg";
-  fill: #fff;
+  fill: #ffffff;
   opacity: 0.8;
   font-size: 12px;
 }
@@ -2534,19 +2534,19 @@
 }
 .n-topology.n-topology-slate .nodeset .dot {
   fill: #223343;
-  stroke: #fff;
+  stroke: #ffffff;
   stroke-width: 1;
 }
 .n-topology.n-topology-slate .nodeset .icon {
   cursor: pointer;
 }
 .n-topology.n-topology-slate .nodeset .bg {
-  fill: #fff;
+  fill: #ffffff;
   pointer-events: none;
 }
 .n-topology.n-topology-slate .nodeset text.node-label {
   font-family: "Cisco Sans Reg";
-  fill: #fff;
+  fill: #ffffff;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -2571,7 +2571,7 @@
   fill: #223343;
 }
 .n-topology.n-topology-slate .nodeset .indicator .iconBG:hover {
-  fill: #fff;
+  fill: #ffffff;
 }
 .n-topology.n-topology-slate .nodeset .indicator .iconShape {
   fill: #e6e6e6;
@@ -2623,8 +2623,8 @@
   stroke-width: 2px;
 }
 .n-topology.n-topology-slate .link-set-circle {
-  fill: #fff;
-  stroke: #fff;
+  fill: #ffffff;
+  stroke: #ffffff;
   stroke-width: 16px;
   stroke-linejoin: round;
 }
@@ -2666,8 +2666,8 @@
   pointer-events: none;
 }
 .n-topology.n-topology-slate .selectionRect {
-  stroke: #fff;
-  fill: #fff;
+  stroke: #ffffff;
+  fill: #ffffff;
   fill-opacity: 0.1;
   pointer-events: none;
 }
@@ -2675,13 +2675,13 @@
   max-width: none !important;
 }
 .n-topology.n-topology-slate .aggregationGroup .aggregationText {
-  fill: #fff;
+  fill: #ffffff;
   font-size: 12px;
 }
 .n-topology.n-topology-slate .aggregationGroup .aggregationRect {
-  fill: #fff;
+  fill: #ffffff;
   opacity: 0.2;
-  stroke: #fff;
+  stroke: #ffffff;
   stroke-width: 3;
   stroke-linejoin: round;
   pointer-events: none;
@@ -2757,7 +2757,7 @@
   margin-top: -2px;
 }
 .n-topology.n-topology-slate .n-topology-nav-mode li:hover span {
-  color: #fff;
+  color: #ffffff;
 }
 .n-topology.n-topology-slate .n-topology-nav-mode span {
   color: #888888;
@@ -2765,13 +2765,13 @@
   font-size: 18px;
 }
 .n-topology.n-topology-slate .n-topology-nav-mode-selected {
-  background: #fff !important;
+  background: #ffffff !important;
 }
 .n-topology.n-topology-slate .n-topology-nav-mode-selected span {
   color: #223343;
 }
 .n-topology.n-topology-slate .n-topology-nav-mode-selected:hover {
-  background: #fff !important;
+  background: #ffffff !important;
 }
 .n-topology.n-topology-slate .n-topology-nav-mode-selected:hover span {
   color: #223343 !important;
@@ -2934,7 +2934,7 @@
   list-style: none;
 }
 .n-topology.n-topology-slate .n-topology-loading li:after {
-  background: #fff;
+  background: #ffffff;
 }
 .n-topology.n-topology-slate .n-topology-loading li:nth-child(1) {
   -webkit-transform: rotate(0deg);
@@ -3039,7 +3039,7 @@
 .n-topology.n-topology-yellow {
   position: relative;
   overflow: hidden;
-  background: #000;
+  background: #000000;
   -webkit-transition: background 0.6s;
   /* For Safari 3.1 to 6.0 */
   transition: background 0.6s;
@@ -3091,7 +3091,7 @@
   stroke: #ffc200;
 }
 .n-topology.n-topology-yellow defs [fill*='#FFFFFF'] {
-  fill: #000;
+  fill: #000000;
 }
 .n-topology.n-topology-yellow .n-svg {
   border: none;
@@ -3125,7 +3125,7 @@
   cursor: pointer;
 }
 .n-topology.n-topology-yellow .iconBG {
-  fill: #000;
+  fill: #000000;
 }
 .n-topology.n-topology-yellow .iconBGActive {
   fill: #ffc200;
@@ -3224,7 +3224,7 @@
   pointer-events: none;
 }
 .n-topology.n-topology-yellow .nodeset .dot {
-  fill: #000;
+  fill: #000000;
   stroke: #ffc200;
   stroke-width: 1;
 }
@@ -3250,16 +3250,16 @@
   stroke: #ccc;
 }
 .n-topology.n-topology-yellow .nodeset .iconBG {
-  fill: #000;
+  fill: #000000;
 }
 .n-topology.n-topology-yellow .nodeset .iconBGActive {
-  fill: #000;
+  fill: #000000;
 }
 .n-topology.n-topology-yellow .nodeset .iconBGActive ~ .iconShape {
   display: block !important;
 }
 .n-topology.n-topology-yellow .nodeset .indicator .iconBG {
-  fill: #000;
+  fill: #000000;
 }
 .n-topology.n-topology-yellow .nodeset .indicator .iconBG:hover {
   fill: #ffc200;
@@ -3321,7 +3321,7 @@
 }
 .n-topology.n-topology-yellow .link-set-text {
   font-family: "Cisco Sans Reg";
-  fill: #000;
+  fill: #000000;
   text-anchor: middle;
   dominant-baseline: central;
   font-size: 12px;
@@ -3459,13 +3459,13 @@
   background: #ffc200 !important;
 }
 .n-topology.n-topology-yellow .n-topology-nav-mode-selected span {
-  color: #000;
+  color: #000000;
 }
 .n-topology.n-topology-yellow .n-topology-nav-mode-selected:hover {
   background: #ffc200 !important;
 }
 .n-topology.n-topology-yellow .n-topology-nav-mode-selected:hover span {
-  color: #000 !important;
+  color: #000000 !important;
 }
 .n-topology.n-topology-yellow .n-topology-nav-zoom {
   position: relative;
@@ -3945,7 +3945,7 @@
 }
 .btn:hover,
 .btn:focus {
-  color: #333;
+  color: #333333;
   text-decoration: none;
 }
 .btn:active,
@@ -3966,16 +3966,16 @@ fieldset[disabled] .btn {
   box-shadow: none;
 }
 .btn-default {
-  color: #333;
-  background-color: #fff;
-  border-color: #ccc;
+  color: #333333;
+  background-color: #ffffff;
+  border-color: #cccccc;
 }
 .btn-default:hover,
 .btn-default:focus,
 .btn-default:active,
 .btn-default.active,
 .open .dropdown-toggle.btn-default {
-  color: #333;
+  color: #333333;
   background-color: #ebebeb;
   border-color: #adadad;
 }
@@ -3999,11 +3999,11 @@ fieldset[disabled] .btn-default:active,
 .btn-default.disabled.active,
 .btn-default[disabled].active,
 fieldset[disabled] .btn-default.active {
-  background-color: #fff;
-  border-color: #ccc;
+  background-color: #ffffff;
+  border-color: #cccccc;
 }
 .btn-primary {
-  color: #fff;
+  color: #ffffff;
   background-color: #0386d2;
   border-color: #0376b9;
 }
@@ -4012,7 +4012,7 @@ fieldset[disabled] .btn-default.active {
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
-  color: #fff;
+  color: #ffffff;
   background-color: #026caa;
   border-color: #024f7d;
 }
@@ -4040,7 +4040,7 @@ fieldset[disabled] .btn-primary.active {
   border-color: #0376b9;
 }
 .btn-warning {
-  color: #fff;
+  color: #ffffff;
   background-color: #f2ad4e;
   border-color: #f0a236;
 }
@@ -4049,7 +4049,7 @@ fieldset[disabled] .btn-primary.active {
 .btn-warning:active,
 .btn-warning.active,
 .open .dropdown-toggle.btn-warning {
-  color: #fff;
+  color: #ffffff;
   background-color: #ef9b28;
   border-color: #d98510;
 }
@@ -4077,7 +4077,7 @@ fieldset[disabled] .btn-warning.active {
   border-color: #f0a236;
 }
 .btn-danger {
-  color: #fff;
+  color: #ffffff;
   background-color: #da534f;
   border-color: #d63e3a;
 }
@@ -4086,7 +4086,7 @@ fieldset[disabled] .btn-warning.active {
 .btn-danger:active,
 .btn-danger.active,
 .open .dropdown-toggle.btn-danger {
-  color: #fff;
+  color: #ffffff;
   background-color: #d3322d;
   border-color: #ae2825;
 }
@@ -4114,7 +4114,7 @@ fieldset[disabled] .btn-danger.active {
   border-color: #d63e3a;
 }
 .btn-success {
-  color: #fff;
+  color: #ffffff;
   background-color: #5cb85c;
   border-color: #4cae4c;
 }
@@ -4123,7 +4123,7 @@ fieldset[disabled] .btn-danger.active {
 .btn-success:active,
 .btn-success.active,
 .open .dropdown-toggle.btn-success {
-  color: #fff;
+  color: #ffffff;
   background-color: #47a447;
   border-color: #398439;
 }
@@ -4151,7 +4151,7 @@ fieldset[disabled] .btn-success.active {
   border-color: #4cae4c;
 }
 .btn-info {
-  color: #fff;
+  color: #ffffff;
   background-color: #5bc1df;
   border-color: #46b9db;
 }
@@ -4160,7 +4160,7 @@ fieldset[disabled] .btn-success.active {
 .btn-info:active,
 .btn-info.active,
 .open .dropdown-toggle.btn-info {
-  color: #fff;
+  color: #ffffff;
   background-color: #39b4d8;
   border-color: #259bbe;
 }
@@ -4251,7 +4251,7 @@ input[type="button"].btn-block {
   width: 100%;
 }
 .btn-default .caret {
-  border-top-color: #333;
+  border-top-color: #333333;
 }
 .btn-primary .caret,
 .btn-success .caret,
@@ -4261,7 +4261,7 @@ input[type="button"].btn-block {
   border-top-color: #fff;
 }
 .dropup .btn-default .caret {
-  border-bottom-color: #333;
+  border-bottom-color: #333333;
 }
 .dropup .btn-primary .caret,
 .dropup .btn-success .caret,
@@ -4495,9 +4495,9 @@ input[type="button"].btn-block {
   max-width: 276px;
   padding: 1px;
   text-align: left;
-  background-color: #fff;
+  background-color: #ffffff;
   background-clip: padding-box;
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
@@ -4549,7 +4549,7 @@ input[type="button"].btn-block {
   left: 50%;
   margin-left: -11px;
   border-bottom-width: 0;
-  border-top-color: #999;
+  border-top-color: #999999;
   border-top-color: rgba(0, 0, 0, 0.25);
   bottom: -11px;
 }
@@ -4558,14 +4558,14 @@ input[type="button"].btn-block {
   bottom: 1px;
   margin-left: -10px;
   border-bottom-width: 0;
-  border-top-color: #fff;
+  border-top-color: #ffffff;
 }
 .popover.right .arrow {
   top: 50%;
   left: -11px;
   margin-top: -11px;
   border-left-width: 0;
-  border-right-color: #999;
+  border-right-color: #999999;
   border-right-color: rgba(0, 0, 0, 0.25);
 }
 .popover.right .arrow:after {
@@ -4573,13 +4573,13 @@ input[type="button"].btn-block {
   left: 1px;
   bottom: -10px;
   border-left-width: 0;
-  border-right-color: #fff;
+  border-right-color: #ffffff;
 }
 .popover.bottom .arrow {
   left: 50%;
   margin-left: -11px;
   border-top-width: 0;
-  border-bottom-color: #999;
+  border-bottom-color: #999999;
   border-bottom-color: rgba(0, 0, 0, 0.25);
   top: -11px;
 }
@@ -4588,20 +4588,20 @@ input[type="button"].btn-block {
   top: 1px;
   margin-left: -10px;
   border-top-width: 0;
-  border-bottom-color: #fff;
+  border-bottom-color: #ffffff;
 }
 .popover.left .arrow {
   top: 50%;
   right: -11px;
   margin-top: -11px;
   border-right-width: 0;
-  border-left-color: #999;
+  border-left-color: #999999;
   border-left-color: rgba(0, 0, 0, 0.25);
 }
 .popover.left .arrow:after {
   content: " ";
   right: 1px;
   border-right-width: 0;
-  border-left-color: #fff;
+  border-left-color: #ffffff;
   bottom: -10px;
 }

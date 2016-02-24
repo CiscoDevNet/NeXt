@@ -52,11 +52,11 @@
                             var targetNode = visibleNodes[i + 1];
                             var line = new Line(sourceNode.vector(), targetNode.vector());
                             // padding start
-                            if (i == 0) {
+                            if (i === 0) {
                                 line = line.pad(padding, 0);
                                 d.push('M', line.start.x, line.start.y);
                             } else if (i == visibleNodesLength - 2) {
-                                line = line.pad(0, arrow ? padding + strokeWidth : padding );
+                                line = line.pad(0, arrow ? padding + strokeWidth : padding);
                                 d.push('L', line.start.x, line.start.y);
                                 d.push('L', line.end.x, line.end.y);
                             } else {
@@ -108,13 +108,13 @@
                     arrowD.push('Z');
                     this._arrowEL.set('d', arrowD.join(" "));
                     this._arrowEL.dom().setStyle('stroke-width', 1 * stageScale);
-                    this._arrowEL.dom().setStyle('fill', pathStyle['stroke']);
-                    this._arrowEL.dom().setStyle('stroke', pathStyle['stroke']);
+                    this._arrowEL.dom().setStyle('fill', pathStyle.stroke);
+                    this._arrowEL.dom().setStyle('stroke', pathStyle.stroke);
 
                 } else if (arrow == 'end') {
-                    v1 = new Vector(0, -strokeWidth/2);
-                    v2 = new Vector(strokeWidth, strokeWidth/2);
-                    v3 = new Vector(-strokeWidth, strokeWidth/2);
+                    v1 = new Vector(0, -strokeWidth / 2);
+                    v2 = new Vector(strokeWidth, strokeWidth / 2);
+                    v3 = new Vector(-strokeWidth, strokeWidth / 2);
                     arrowD.push('M', line.end.x, line.end.y);
                     line = line.translate(v1);
                     arrowD.push('L', line.end.x, line.end.y);
@@ -125,8 +125,8 @@
                     arrowD.push('Z');
                     this._arrowEL.set('d', arrowD.join(" "));
                     this._arrowEL.dom().setStyle('stroke-width', 1 * stageScale);
-                    this._arrowEL.dom().setStyle('fill', pathStyle['stroke']);
-                    this._arrowEL.dom().setStyle('stroke', pathStyle['stroke']);
+                    this._arrowEL.dom().setStyle('fill', pathStyle.stroke);
+                    this._arrowEL.dom().setStyle('stroke', pathStyle.stroke);
                 }
 
             }
