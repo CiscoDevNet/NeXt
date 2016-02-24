@@ -59,13 +59,14 @@ module.exports = function(grunt) {
                 "name": "Next UI Toolkit",
                 "description": "Next UI Toolkit API docs",
                 "version": "0.9.0",
-                "url": "index.html",
+                "url": "https://wiki.opendaylight.org/view/NeXt:Main",
+                "logo": "http://abdvl.github.io/src/bin/logo.svg",
                 options: {
                     "linkNatives": "true",
                     "attributesEmit": "false",
                     "selleck": "false",
-                    paths: ['target/js'],
-                    outdir: 'target/doc'
+                    "paths": ['target/js'],
+                    "outdir": 'target/doc'
                 }
             }
         },
@@ -83,6 +84,13 @@ module.exports = function(grunt) {
                     dest: 'target'
                 }]
             },
+            readme: {
+                files: [{
+                    expand: true,
+                    src: ['README.md'],
+                    dest: 'target'
+                }]
+            },
             //example: {
             //    files: [{
             //        expand: true,
@@ -93,16 +101,19 @@ module.exports = function(grunt) {
             next: {
                 files: [{
                     expand: true,
-                    src: ['target/js'],
-                    dest: 'src/dist'
+                    cwd: 'target/js',
+                    src: ['**'],
+                    dest: 'src/dist/js'
                 }, {
                     expand: true,
-                    src: ['target/css'],
-                    dest: 'src/dist'
+                    cwd: 'target/css',
+                    src: ['**'],
+                    dest: 'src/dist/css'
                 }, {
                     expand: true,
-                    src: ['target/fonts'],
-                    dest: 'src/dist'
+                    cwd: 'target/fonts',
+                    src: ['**'],
+                    dest: 'src/dist/fonts'
                 }, ]
             },
             LICENSE: {
