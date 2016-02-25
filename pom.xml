@@ -15,6 +15,7 @@
     <groupId>org.opendaylight.next</groupId>
     <artifactId>next</artifactId>
     <version>0.9.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <build>
         <plugins>
@@ -43,8 +44,31 @@
                     <npmVersion>3.7.1</npmVersion>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.10</version>
+                <executions>
+                    <execution>
+                        <id>attach-artifacts</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <configuration>
+                            <artifacts>
+                                <artifact>
+                                    <file>target/next.zip</file>
+                                    <type>zip</type>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
+
     <scm>
         <connection>scm:git:ssh://git.opendaylight.org:29418/next.git</connection>
         <developerConnection>scm:git:ssh://git.opendaylight.org:29418/next.git</developerConnection>
