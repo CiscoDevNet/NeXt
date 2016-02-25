@@ -1,11 +1,12 @@
 # NeXt UI Framework
 
-NeXt UI toolkit is an HTML5/JavaScript based toolkit for network web application. Provide high performance and high quality framework and network centric topology component.
+NeXt UI toolkit is an HTML5/JavaScript based toolkit for network web application. It provides a network centric topology UI component featuring high performance and rich functionality. NeXt can display large complex network topologies, aggregated network nodes, traffic/path/tunnel/group visualizations and it includes different layout algorithms, map overlays, and preset user friendly interactions. NeXt can work together with DLUX to build ODL apps.
 
-https://wiki.opendaylight.org/view/NeXt:Main
+Homepage : https://wiki.opendaylight.org/view/NeXt:Main
+
+UI Toolkit Quicklook : https://www.youtube.com/watch?v=gBsUDu8aucs
 
 Current version : 0.9
-
 
 ## Key Features
 
@@ -16,8 +17,68 @@ Current version : 0.9
 * Map overlays
 * Preset user-friendly interactions
 
+## File structure
+```
+next/
+  |- css/
+  |  |- next.css // next stylesheet file
+  |  |- next.min.css // minimized stylesheet file
+  |  |- next-componentized.css
+  |  |- next-componentized.min.css
+  |- js
+  |  |- next.js // next js library
+  |  |- next.min.js // minimized js library
+  |- fonts/ // font resources foler
+  |  doc/ //APi manual
+  |- README.md
+```
+
+## Quick start
+
+1) Create a HTML file.
+
+```HTML
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css/next.css">
+        <script src="js/next.js"></script>
+    </head>
+    <body>
+    <script type="text/javascript">
+    //next code
+    </script>
+    </body>
+</html>
+```
+
+2) Edit next code
+
+```javascript
+// Initialize a topology component
+var topo = new nx.graphic.Topology({
+});
+
+// Create new app
+var app = new nx.ui.Application();
+
+// Attach topo to app
+topo.attach(app);
+```
+
+3) Open html file with Chrome
+
+### Tutorials and Sample code
+
+Tutorials : https://wiki.opendaylight.org/view/NeXt:Main
+
+Opendaylight sample code intergrate DLUX with NeXt: https://github.com/CiscoDevNet/opendaylight-sample-apps
+
+BIERMAN : https://github.com/zverevalexei/bierman-gui
 
 ## Build instructions from source code
+
+Git :  https://git.opendaylight.org/gerrit/p/next
 
 ### Environment requirements
 
@@ -44,3 +105,4 @@ Are you NeXt?
 * Aikepaer Abuduweili (aaikepae@cisco.com)
 * Kang Li (lkang2@cisco.com)
 * Alexei Zverev (alzverev@cisco.com)
+* Xu Yangyang(yangyxu@cisco.com)
