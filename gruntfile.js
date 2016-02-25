@@ -4,25 +4,28 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('files.json'),
         copyright: "/*" + grunt.file.read('COPYRIGHT') + "*/",
         license: "/*" + grunt.file.read('LICENSE') + "*/",
+
+        build_path: 'target/next',
+
         clean: {
             all: {
-                src: ['target']
+                src: ['<%= build_path %>']
             }
         },
         less: {
             topo: {
                 files: {
-                    "target/css/next.css": "src/style/topology/next-topology.less",
-                    "target/css/next-componentized.css": "src/style/topology/next-topology-componentized.less"
+                    "<%= build_path %>/css/next.css": "src/style/topology/next-topology.less",
+                    "<%= build_path %>/css/next-componentized.css": "src/style/topology/next-topology-componentized.less"
                 }
             }
         },
         cssmin: {
             topo: {
                 expand: true,
-                cwd: 'target/css',
+                cwd: '<%= build_path %>/css',
                 src: ['next.css', 'next-componentized.css'],
-                dest: 'target/css',
+                dest: '<%= build_path %>/css',
                 ext: '.min.css'
             }
         },
@@ -40,13 +43,13 @@ module.exports = function(grunt) {
         concat: {
             base: {
                 src: '<%= pkg.scripts %>',
-                dest: 'target/js/next.js'
+                dest: '<%= build_path %>/js/next.js'
             }
         },
         uglify: {
             base: {
-                src: ['target/js/next.js'],
-                dest: 'target/js/next.min.js',
+                src: ['<%= build_path %>/js/next.js'],
+                dest: '<%= build_path %>/js/next.min.js',
                 options: {
                     beautify: {
                         ascii_only: true
@@ -65,8 +68,8 @@ module.exports = function(grunt) {
                     "linkNatives": "true",
                     "attributesEmit": "false",
                     "selleck": "false",
-                    "paths": ['target/js'],
-                    "outdir": 'target/doc'
+                    "paths": ['<%= build_path %>/js'],
+                    "outdir": '<%= build_path %>/doc'
                 }
             }
         },
@@ -81,37 +84,30 @@ module.exports = function(grunt) {
                     expand: true,
                     cwd: 'src/style',
                     src: ['fonts/**'],
-                    dest: 'target'
+                    dest: '<%= build_path %>'
                 }]
             },
             readme: {
                 files: [{
                     expand: true,
                     src: ['README.md'],
-                    dest: 'target'
+                    dest: '<%= build_path %>'
                 }]
             },
-            //example: {
-            //    files: [{
-            //        expand: true,
-            //        src: ['src/example/topology/**'],
-            //        dest: 'target/site'
-            //    }]
-            //},
             next: {
                 files: [{
                     expand: true,
-                    cwd: 'target/js',
+                    cwd: '<%= build_path %>/js',
                     src: ['**'],
                     dest: 'src/dist/js'
                 }, {
                     expand: true,
-                    cwd: 'target/css',
+                    cwd: '<%= build_path %>/css',
                     src: ['**'],
                     dest: 'src/dist/css'
                 }, {
                     expand: true,
-                    cwd: 'target/fonts',
+                    cwd: '<%= build_path %>/fonts',
                     src: ['**'],
                     dest: 'src/dist/fonts'
                 }, ]
@@ -130,20 +126,22 @@ module.exports = function(grunt) {
                     text: '<%= copyright %>\r\n<%= license %>'
                 },
                 files: {
-                    'target/js/next.js': 'target/js/next.js',
-                    'target/js/next.min.js': 'target/js/next.min.js',
-                    'target/css/next.css': 'target/css/next.css',
-                    'target/css/next.min.css': 'target/css/next.min.css'
+                    '<%= build_path %>/js/next.js': '<%= build_path %>/js/next.js',
+                    '<%= build_path %>/js/next.min.js': '<%= build_path %>/js/next.min.js',
+                    '<%= build_path %>/css/next.css': '<%= build_path %>/css/next.css',
+                    '<%= build_path %>/css/next.min.css': '<%= build_path %>/css/next.min.css'
                 }
             }
         },
         compress: {
             main: {
                 options: {
-                    archive: 'target/NeXt.zip'
+                    archive: 'target/next.zip'
                 },
                 files: [{
-                    src: ['target/**']
+                    expand: true,
+                    cwd: '<%= build_path %>',
+                    src: ['**']
                 }]
             }
         }
