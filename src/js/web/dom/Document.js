@@ -1,4 +1,4 @@
-(function (nx) {
+(function(nx) {
     var Element = nx.dom.Element;
     var Fragment = nx.dom.Fragment;
     var Text = nx.dom.Text,
@@ -13,50 +13,50 @@
     };
 
     var readyService = {
-        setHasReady: function (inValue) {
+        setHasReady: function(inValue) {
             readyModel.hasReady = inValue;
         },
-        getHasReady: function () {
+        getHasReady: function() {
             return readyModel.hasReady;
         },
-        addQueue: function (inHandler) {
+        addQueue: function(inHandler) {
             readyModel.queue.push(inHandler);
         },
-        clearQueue: function () {
+        clearQueue: function() {
             readyModel.queue.length = 0;
         },
-        execQueue: function () {
+        execQueue: function() {
             var i = 0,
                 length = readyModel.queue.length;
             for (; i < length; i++) {
                 readyModel.queue[i]();
             }
         },
-        setTopFrame: function (inValue) {
+        setTopFrame: function(inValue) {
             readyModel.topFrame = inValue;
         },
-        getTopFrame: function () {
+        getTopFrame: function() {
             return readyModel.topFrame;
         }
     };
 
     var readyController = {
-        initReady: function (inHandler) {
+        initReady: function(inHandler) {
             readyService.addQueue(inHandler); //save the event
             return readyController.isReady();
         },
-        fireReady: function () {
+        fireReady: function() {
             readyService.execQueue();
             readyService.clearQueue();
         },
-        setTopFrame: function () {
+        setTopFrame: function() {
             // If IE and not a frame
             // continually check to see if the document is ready
             try {
                 readyService.setTopFrame(global.frameElement === null && document.documentElement);
             } catch (e) {}
         },
-        doScrollCheck: function () {
+        doScrollCheck: function() {
             var topFrame = readyService.getTopFrame();
             if (topFrame && topFrame.doScroll) {
                 try {
@@ -71,13 +71,13 @@
                 readyController.fireReady();
             }
         },
-        isOnLoad: function (inEvent) {
+        isOnLoad: function(inEvent) {
             return (inEvent || global.event).type === 'load';
         },
-        isReady: function () {
+        isReady: function() {
             return readyService.getHasReady() || document.readyState === "complete";
         },
-        detach: function () {
+        detach: function() {
             if (document.addEventListener) {
                 document.removeEventListener("DOMContentLoaded", readyController.completed, false);
                 global.removeEventListener("load", readyController.completed, false);
@@ -86,17 +86,17 @@
                 global.detachEvent("onload", readyController.completed);
             }
         },
-        w3cReady: function () {
+        w3cReady: function() {
             document.addEventListener('DOMContentLoaded', readyController.completed, false);
             global.addEventListener('load', readyController.completed, false);
         },
-        ieReady: function () {
+        ieReady: function() {
             document.attachEvent("onreadystatechange", readyController.completed);
             global.attachEvent("onload", readyController.completed);
             readyController.setTopFrame();
             readyController.doScrollCheck();
         },
-        readyMain: function () {
+        readyMain: function() {
             if (document.readyState === "complete") {
                 return setTimeout(readyController.readyMain);
             } else {
@@ -109,7 +109,7 @@
                 }
             }
         },
-        completed: function (inEvent) {
+        completed: function(inEvent) {
             if (readyController.isReady() || readyController.isOnLoad(inEvent)) {
                 readyService.setHasReady(true);
                 readyController.detach();
@@ -139,7 +139,7 @@
              * @default {}
              */
             cssStyleSheet: {
-                get: function () {
+                get: function() {
                     var nxCssStyleSheet = this._cssStyleSheet;
                     if (!nxCssStyleSheet) {
                         var styleNode = document.getElementById('nx-style') || this._createStyleNode();
@@ -155,7 +155,7 @@
              * @default {}
              */
             root: {
-                get: function () {
+                get: function() {
                     return document.documentElement;
                 }
             },
@@ -166,18 +166,18 @@
              * @default {}
              */
             body: {
-                get: function () {
+                get: function() {
                     return new Element(document.body);
                 }
             },
             html: {
-                get: function () {
+                get: function() {
                     return new Element(document.getElementsByTagName('html')[0]);
                 }
             }
         },
         methods: {
-            init: function () {
+            init: function() {
                 this.__listeners__ = {};
                 this._documentListeners = {};
             },
@@ -188,7 +188,7 @@
              * @param handler {Function}
              * @param [context] {Object}
              */
-            on: function (name, handler, context) {
+            on: function(name, handler, context) {
                 var map = this.__listeners__;
                 var listeners = map[name] = map[name] || [{
                     owner: null,
@@ -206,7 +206,7 @@
 
                 var self;
                 return {
-                    release: function () {
+                    release: function() {
                         self.off(name, handler, context);
                     }
                 };
@@ -218,7 +218,7 @@
              * @param [handler] {Function}
              * @param [context] {Object}
              */
-            off: function (name, handler, context) {
+            off: function(name, handler, context) {
                 var listeners = this.__listeners__[name],
                     listener;
                 if (listeners) {
@@ -243,7 +243,7 @@
              * @param handler {Function}
              * @param [context] {Object}
              */
-            upon: function (name, handler, context) {
+            upon: function(name, handler, context) {
                 var map = this.__listeners__;
                 var listeners = map[name] = map[name] || [{
                     owner: null,
@@ -265,7 +265,7 @@
              * @param name {String}
              * @param [data] {*}
              */
-            fire: function (name, data) {
+            fire: function(name, data) {
                 var listeners = this.__listeners__[name],
                     listener, result;
                 if (listeners) {
@@ -287,7 +287,7 @@
              * @param key
              * @param value
              */
-            registerNS: function (key, value) {
+            registerNS: function(key, value) {
                 nsMap[key] = value;
             },
             /**
@@ -296,7 +296,7 @@
              * @param key
              * @returns {*}
              */
-            resolveNS: function (key) {
+            resolveNS: function(key) {
                 return nsMap[key];
             },
             /**
@@ -304,7 +304,7 @@
              * @method createFragment
              * @returns {nx.dom.Fragment}
              */
-            createFragment: function () {
+            createFragment: function() {
                 return new Fragment(document.createDocumentFragment());
             },
             /**
@@ -313,7 +313,7 @@
              * @param tag
              * @returns {nx.dom.Element}
              */
-            createElement: function (tag) {
+            createElement: function(tag) {
                 return new Element(document.createElement(tag));
             },
             /**
@@ -322,7 +322,7 @@
              * @param text
              * @returns {nx.dom.Text}
              */
-            createText: function (text) {
+            createText: function(text) {
                 return new Text(document.createTextNode(text));
             },
             /**
@@ -332,7 +332,7 @@
              * @param tag
              * @returns {nx.dom.Element}
              */
-            createElementNS: function (ns, tag) {
+            createElementNS: function(ns, tag) {
                 var uri = Document.resolveNS(ns);
                 if (uri) {
                     return new Element(document.createElementNS(uri, tag));
@@ -346,7 +346,7 @@
              * @param dom
              * @returns {*}
              */
-            wrap: function (dom) {
+            wrap: function(dom) {
                 if (nx.is(dom, Node)) {
                     return dom;
                 } else {
@@ -358,7 +358,7 @@
              * @method docRect
              * @returns {{width: (Function|number), height: (Function|number), scrollWidth: *, scrollHeight: *, scrollX: *, scrollY: *}}
              */
-            docRect: function () {
+            docRect: function() {
                 var root = this.root(),
                     height = global.innerHeight || 0,
                     width = global.innerWidth || 0,
@@ -384,7 +384,7 @@
              * @method ready
              * @param inHandler
              */
-            ready: function (inHandler) {
+            ready: function(inHandler) {
                 //add handler to queue:
                 if (readyController.initReady(inHandler)) {
                     setTimeout(readyController.fireReady, 1);
@@ -400,8 +400,9 @@
              * @param inIndex
              * @returns {*}
              */
-            addRule: function (inSelector, inCssText, inIndex) {
-                return this._ruleAction('add', [inSelector, inCssText, inIndex]);
+            addRule: function(inSelector, inCssText, inIndex) {
+                var cssText = inSelector + "{" + inCssText + "}";
+                return this._ruleAction('insert', [cssText, inIndex]);
             },
             /**
              * insert a rule to next style sheet
@@ -410,7 +411,7 @@
              * @param inIndex
              * @returns {*}
              */
-            insertRule: function (inFullCssText, inIndex) {
+            insertRule: function(inFullCssText, inIndex) {
                 return this._ruleAction('insert', [inFullCssText, inIndex]);
             },
             /**
@@ -419,7 +420,7 @@
              * @param inIndex
              * @returns {*}
              */
-            deleteRule: function (inIndex) {
+            deleteRule: function(inIndex) {
                 return this._ruleAction('delete', [inIndex]);
             },
             /**
@@ -429,7 +430,7 @@
              * @param inIndex
              * @returns {*}
              */
-            removeRule: function (inSelector, inIndex) {
+            removeRule: function(inSelector, inIndex) {
                 return this._ruleAction('remove', [inSelector, inIndex]);
             },
             /**
@@ -437,8 +438,8 @@
              * @method addRules
              * @param inRules
              */
-            addRules: function (inRules) {
-                nx.each(inRules, function (rule, selector) {
+            addRules: function(inRules) {
+                nx.each(inRules, function(rule, selector) {
                     this.addRule(selector, util.getCssText(rule), null);
                 }, this);
             },
@@ -446,13 +447,13 @@
              * Delete all rules
              * @method deleteRules
              */
-            deleteRules: function () {
+            deleteRules: function() {
                 var defLength = this.cssStyleSheet().rules.length;
                 while (defLength--) {
                     this.deleteRule(0);
                 }
             },
-            _ruleAction: function (inAction, inArgs) {
+            _ruleAction: function(inAction, inArgs) {
                 var styleSheet = this.cssStyleSheet();
                 var lastIndex = inArgs.length - 1;
                 //set default index
@@ -460,17 +461,18 @@
                 styleSheet[inAction + 'Rule'].apply(styleSheet, inArgs);
                 return this._defRuleIndex(styleSheet, null);
             },
-            _defRuleIndex: function (inStyleSheet, inIndex) {
-                return inIndex === null ? inStyleSheet.rules.length : inIndex;
+            _defRuleIndex: function(inStyleSheet, inIndex) {
+                var rules = inStyleSheet.rules ||inStyleSheet.cssRules;
+                return inIndex == null ? rules.length : inIndex;
             },
-            _createStyleNode: function () {
+            _createStyleNode: function() {
                 var styleNode = document.createElement("style");
                 styleNode.type = "text/css";
                 styleNode.id = "nx-style";
                 (document.head || document.getElementsByTagName("head")[0] || document.documentElement).appendChild(styleNode);
                 return styleNode;
             },
-            _getCSSStyleSheetInstance: function (inStyleNode) {
+            _getCSSStyleSheetInstance: function(inStyleNode) {
                 var styleSheets = document.styleSheets,
                     key,
                     sheet = null;
@@ -482,11 +484,11 @@
                 }
                 return sheet;
             },
-            _attachDocumentListeners: function (name) {
+            _attachDocumentListeners: function(name) {
                 var documentListeners = this._documentListeners;
                 if (!(name in documentListeners)) {
                     var self = this;
-                    var listener = documentListeners[name] = function (event) {
+                    var listener = documentListeners[name] = function(event) {
                         self.fire(name, event);
                     };
 

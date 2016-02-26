@@ -81,7 +81,7 @@
 
                 ICONS.icons[name].font = [fontCharacter, fontCharacter];
 
-                nx.dom.Document.addRule(".n-topology g[iconType=" + name + "] .fontIcon", "font-family: " + fontfamily + " !important;");
+                nx.dom.Document.addRule(".n-topology g[icontype=" + name + "] .fontIcon", "font-family: " + fontfamily + " !important;");
 
 
             },

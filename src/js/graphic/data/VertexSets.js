@@ -66,10 +66,9 @@
              * @param {Object} [config] Config object
              * @returns {nx.data.VertexSet}
              */
-            addVertexSet: function(data, config) {
-
-
+            addVertexSet: function(data, cfg) {
                 var vertexSet;
+                var config = cfg || {};
                 var nodeSet = this.nodeSet();
                 var vertexSets = this.vertexSets();
                 if (nx.is(nodeSet, nx.data.ObservableCollection)) {
