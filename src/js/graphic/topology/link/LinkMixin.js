@@ -1,4 +1,4 @@
-(function (nx, global) {
+(function(nx, global) {
 
     /**
      * Links mixin class
@@ -57,17 +57,22 @@
              * @param inOption {Config}
              * @returns {nx.graphic.Topology.Link}
              */
-            addLink: function (obj, inOption) {
-                if (obj.source == null || obj.target == null) {
+            addLink: function(obj, inOption) {
+                if (!obj || obj.source == null || obj.target == null) {
                     return undefined;
                 }
                 var edge = this.graph().addEdge(obj, inOption);
+                var edgeSet = this.graph().getEdgeSetBySourceAndTarget(obj.source, obj.target);
+                if (edgeSet) {
+                    this.graph()._generateConnection(edgeSet);
+                }
                 if (edge) {
                     var link = this.getLink(edge.id());
                     this.fire("addLink", link);
                     return link;
                 } else {
                     return null;
+
                 }
 
             },
@@ -77,11 +82,11 @@
              * @param arg  {String}
              * @returns {boolean}
              */
-            removeLink: function (arg) {
+            removeLink: function(arg) {
                 this.deleteLink(arg);
             },
 
-            deleteLink: function (arg) {
+            deleteLink: function(arg) {
                 var id = arg;
                 if (nx.is(arg, nx.graphic.Topology.AbstractLink)) {
                     id = arg.id();
@@ -97,7 +102,7 @@
              * @param callback <Function>
              * @param context {Object}
              */
-            eachLink: function (callback, context) {
+            eachLink: function(callback, context) {
                 this.getLayer("links").eachLink(callback, context || this);
             },
 
@@ -107,7 +112,7 @@
              * @param id
              * @returns {*}
              */
-            getLink: function (id) {
+            getLink: function(id) {
                 return this.getLayer("links").getLink(id);
             },
             /**
@@ -116,7 +121,7 @@
              * @param targetVertexID {String} target node's id
              * @returns  {nx.graphic.Topology.LinkSet}
              */
-            getLinkSet: function (sourceVertexID, targetVertexID) {
+            getLinkSet: function(sourceVertexID, targetVertexID) {
                 return this.getLayer("linkSet").getLinkSet(sourceVertexID, targetVertexID);
             },
             /**
@@ -124,7 +129,7 @@
              * @param linkKey {String} linkKey
              * @returns {nx.graphic.Topology.LinkSet}
              */
-            getLinkSetByLinkKey: function (linkKey) {
+            getLinkSetByLinkKey: function(linkKey) {
                 return this.getLayer("linkSet").getLinkSetByLinkKey(linkKey);
             },
             /**
@@ -133,7 +138,7 @@
              * @param targetVertexID {String} target node's id
              * @returns {Array} links collection
              */
-            getLinksByNode: function (sourceVertexID, targetVertexID) {
+            getLinksByNode: function(sourceVertexID, targetVertexID) {
                 var linkSet = this.getLinkSet(sourceVertexID, targetVertexID);
                 if (linkSet) {
                     return linkSet.links();

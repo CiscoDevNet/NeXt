@@ -1,8 +1,8 @@
 {
     "name": "Next graph",
     "description": "Next API docs",
-    "version": "0.9",
-    "url":"index.html",
+    "version": "0.10.0",
+    "url": "index.html",
     "options": {
         "linkNatives": "true",
         "attributesEmit": "true",
