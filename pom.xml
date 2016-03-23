@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.opendaylight.odlparent</groupId>
         <artifactId>odlparent</artifactId>
-        <version>1.6.1-SNAPSHOT</version>
+        <version>1.6.1-Beryllium-SR1</version>
         <relativePath></relativePath>
     </parent>
 
@@ -14,7 +14,7 @@
 
     <groupId>org.opendaylight.next</groupId>
     <artifactId>next</artifactId>
-    <version>0.9.1-SNAPSHOT</version>
+    <version>0.9.1-Beryllium-SR1</version>
     <packaging>pom</packaging>
 
     <build>
