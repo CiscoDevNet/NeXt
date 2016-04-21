@@ -14,10 +14,10 @@
              */
             identityKey: {
                 get: function () {
-                    return this._identiyKey || 'index';
+                    return this._identityKey || 'index';
                 },
                 set: function (value) {
-                    this._identiyKey = value;
+                    this._identityKey = value;
                     this.graph().set('identityKey', value);
                 }
             },
