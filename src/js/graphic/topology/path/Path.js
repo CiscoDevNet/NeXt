@@ -57,6 +57,23 @@
             pathPadding: {
                 value: "auto"
             },
+			pathColor: {
+				get: function(){
+					return this._pathStyle.color ? this._pathStyle.color : null;
+				},
+				set: function(userColor){
+					var hexColorRE = /#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})/;
+					// if it is a HEX-format color
+					if(hexColorRE.test(userColor)){
+						this.view("path").setStyle("fill", userColor);
+						this._pathStyle.color = userColor;
+					}
+					else{
+						console.warning("Color must be in HEX format, e.g.: #ffe4cc");
+						this._setRandomColor();
+					}
+				}
+			},
             /**
              * Get/set path arrow type , 'none'/'cap'/'full'/'end'
              * @property
@@ -186,10 +203,13 @@
                 var pathStyle = this.pathStyle();
                 this.view("path").sets(pathStyle);
 
-                if (!pathStyle.fill) {
-                    this.view("path").setStyle("fill", colorTable[colorIndex++ % 5]);
-                }
-
+				// if user passed a distinct color
+				if(props.color){
+					this.pathColor(props.color);
+				}
+				else{
+					this._setRandomColor();
+				}
             },
             /**
              * Draw a path,internal
@@ -389,6 +409,11 @@
 
                 return linksSequentialArray;
             },
+			_setRandomColor: function() {
+				var color = colorTable[colorIndex++ % 5];
+				this.pathColor(color);
+				return color;
+			},
             isEqual: function(pos1, pos2) {
                 return pos1.x == pos2.x && pos1.y == pos2.y;
             },

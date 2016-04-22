@@ -316,6 +316,14 @@ var Demo = nx.define(nx.ui.Component, {
                 itemClass: 'Path.Traffic'
             });
 
+			this.addItem({
+				categoryName: 'Path',
+				itemKey: 'setcolor',
+				itemLabel: 'Set color of path',
+				files: ['path/set-path-color.js'],
+				itemClass: 'Path.SetColor'
+			});
+
             this.addItem({
                 categoryName: 'Map',
                 itemKey: 'us',
